@@ -6,8 +6,8 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
-    database: 'HospitalManagment'
+    password: 'password',
+    database: 'hospitalmanagement'
 })
 
 module.exports = function(passport) {
