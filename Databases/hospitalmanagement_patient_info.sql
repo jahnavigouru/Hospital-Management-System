@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `patient_info`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patient_info` (
   `id` int DEFAULT NULL,
+  `p_dor` date DEFAULT NULL,
   `p_name` varchar(40) DEFAULT NULL,
   `p_age` int DEFAULT NULL,
   `p_gender` varchar(10) DEFAULT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE `patient_info` (
 
 LOCK TABLES `patient_info` WRITE;
 /*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
+INSERT INTO `patient_info` VALUES (3,'2020-05-29','Marshall',25,'male','1996-03-12','A+',1234567890,'India','marshall@gmail.com'),(3,'2020-05-29','Marshall',25,'male','1996-03-12','A+',1234567890,'India','marshall@gmail.com');
 /*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 14:07:31
+-- Dump completed on 2020-05-29 19:20:50
