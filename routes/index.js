@@ -49,7 +49,6 @@ router.post('/patientdetails', (req, res) => {
 
     if(P_errors.length > 0) {
         req.flash('temp',P_errors)
-        //res.render('patientinfo', { date,name,age,gender,DOB,BloodGrp,phone,address,email,d_id,P_errors });
         res.redirect('/patientinfo')
     }
     else{
