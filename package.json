@@ -1,7 +1,6 @@
 {
-  "name": "Hospital_Managment",
+  "name": "hospital_managment",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app"
@@ -21,5 +20,18 @@
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jahnavi0801/Hospital-Management-System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jahnavi0801/Hospital-Management-System/issues"
+  },
+  "homepage": "https://github.com/jahnavi0801/Hospital-Management-System#readme",
+  "description": ""
 }
