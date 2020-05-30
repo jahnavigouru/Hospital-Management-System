@@ -14,7 +14,7 @@ module.exports = function(passport) {
     passport.use(
         new LocalStrategy({ usernameField: 'email', passReqToCallback : true }, function (req, email, password, done)  {
             //Match User
-                let check = `select * from users where UserID = "${email}"`
+                let check = `select * from users where email = "${email}"`
                 db.query(check, (err, match) => {
 
                 if(err) throw err
@@ -38,8 +38,9 @@ module.exports = function(passport) {
         done(null, user.id);
       })    
       passport.deserializeUser((id, done) => {
-           let sql = `select id from users where id = ${id}`
+           let sql = `select * from users where id = ${id}`
            db.query(sql, (err, result) => {
+
                done(err, result[0])
            })
       })  

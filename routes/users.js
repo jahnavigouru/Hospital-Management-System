@@ -14,13 +14,23 @@ router.get('/register', (req, res) => res.render('register'))
 
 //register handel
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body
-    
+    const { name, DOB, gender, age, phone, type, date, email, password, password2 } = req.body
+  
     let errors = []
 
     // Check required fields
-    if(!name || !email || !password || !password2) {
+    if(!name || !DOB || !gender || !age || !type || !date || !email || !password || !password2 ) {
         errors.push({msg: 'Please fill in all fields'})
+    }
+
+    // Check Age
+    if(Number(age) < 15) {
+        errors.push({ msg: 'Age is incorrect' })
+    }
+
+    // Check Mobile 
+    if(phone.length != 10 || Number(phone)>9999999999) {
+        errors.push({ msg: 'Mobile Number is incorrect' })
     }
 
     // Check password
@@ -37,19 +47,25 @@ router.post('/register', (req, res) => {
         res.render('register', {
             errors,
             name, 
+            DOB, 
+            gender, 
+            age, 
+            phone,
+            type, 
+            date, 
             email, 
-            password,
+            password, 
             password2
         })
     }else{
-        let find = `select UserID from users where UserID = ${email}`
+        let find = `select email from users where email = "${email}"`
         db.query(find, (err, result) =>{
             if(err) throw err
             if(result.length > 0){
                //if user exist
                errors.push({ msg: `${email} UserID already exists` })
                res.render('register', {
-                   name, email, password, password2,errors
+                name, DOB, gender, age, type, date, email, password, password2, errors
                })
             }else if(result.length == 0){
                 
@@ -62,7 +78,7 @@ router.post('/register', (req, res) => {
                         const pass = hash
 
                         //save new user
-                        let newUser = `insert into users set name = "${name}", UserID = "${email}", password = "${pass}"`
+                        let newUser = `insert into users set name = "${name}", UserType = "${type}", DOB = "${DOB}", Age = ${age}, Date_joning = "${date}", phone_number = ${phone}, email = "${email}", password = "${pass}" `
                         db.query(newUser, (err, saved) => {
                             if(err) throw err
                             req.flash('success_msg', 'You are now Successfully registered')
@@ -78,7 +94,7 @@ router.post('/register', (req, res) => {
 // Login Handel
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/dashboard',
+      successRedirect: '/Rep_dashboard',
       failureRedirect: '/users/login',
       failureFlash: true
     })(req, res, next);
