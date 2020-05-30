@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospitalmanagement
+-- Host: localhost    Database: hospitalmanagment
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `patient_info`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `patient_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
+CREATE TABLE `patient_info` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `UserID` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `p_dor` varchar(255) DEFAULT NULL,
+  `p_name` varchar(255) DEFAULT NULL,
+  `p_age` int DEFAULT NULL,
+  `p_gender` varchar(255) DEFAULT NULL,
+  `p_dob` varchar(255) DEFAULT NULL,
+  `p_bloodgrp` varchar(255) DEFAULT NULL,
+  `p_phn` int DEFAULT NULL,
+  `p_addr` varchar(255) DEFAULT NULL,
+  `p_emailid` varchar(255) DEFAULT NULL,
+  `d_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `d_id` (`d_id`),
+  CONSTRAINT `patient_info_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `diseases` (`d_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `patient_info`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jinal','201852012','$2a$10$EVb5w1rRBsbuWmiVGmvhmOCyOU40n9vOPNORDFQrKtzU2LKmbOM76'),(2,'Jahnavi','201852010','$2a$10$zRKf2XKFTvdnF/.rY.OEfuMUuVvHqOXXYafH7FF6a8wuhjgLodn9a'),(3,'Marshall','1234','$2a$10$.7JJdPZ7ZiLP13.ZKeWDiODBTedw4mfn.XTEbkOPyxbSYRhfDPCAK');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `patient_info` WRITE;
+/*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 19:20:51
+-- Dump completed on 2020-05-30 15:10:45

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospitalmanagement
+-- Host: localhost    Database: hospitalmanagment
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `diseases`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `diseases` (
-  `d_id` int NOT NULL,
+  `d_id` int NOT NULL AUTO_INCREMENT,
   `d_name` varchar(30) DEFAULT NULL,
-  `id` int DEFAULT NULL,
+  `doc_id` int DEFAULT NULL,
   PRIMARY KEY (`d_id`),
-  KEY `id` (`id`),
-  CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id` (`doc_id`),
+  CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `diseases` (
 
 LOCK TABLES `diseases` WRITE;
 /*!40000 ALTER TABLE `diseases` DISABLE KEYS */;
+INSERT INTO `diseases` VALUES (1,'Physician',NULL),(2,'Neurosurgeon',NULL);
 /*!40000 ALTER TABLE `diseases` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 19:20:50
+-- Dump completed on 2020-05-30 15:10:45
