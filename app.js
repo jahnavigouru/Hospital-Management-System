@@ -47,8 +47,8 @@ app.use((req, res, next) => {
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
-    database: 'HospitalManagment'
+    password: 'password',
+    database: 'hospitalmanagement'
 })
 
 //connect
