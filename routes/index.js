@@ -4,15 +4,25 @@ const { ensureAuthenticated } = require('../config/auth')
 
 //DB 
 const db = require('../app')
-
+var docname;
 //Welcome Page
 router.get('/', (req, res) => res.render('welcome'))
 
 // Dashboard Page
 router.get('/Rep_dashboard',  ensureAuthenticated, (req, res) => {
-    res.render('Rep_dashboard', {
-        UserType: req.user.UserType
-    })
+    var user = req.user.UserType;
+    if(user == "Doctor") {
+        db.query("select name from users where id="+req.user.id,(err,result) => {
+            if (err) throw err;
+            docname = result[0].name;      
+            res.redirect("/doctor");
+        });
+    }
+    else {
+        res.render('Rep_dashboard', {
+            UserType: req.user.UserType
+        })
+    }    
 })
 
 //patient registration
@@ -24,6 +34,38 @@ router.get("/patientinfo",(req,res) => {
             diseases: result
         })
     })
+});
+
+var obj = {};
+//patient registration
+router.get("/doctor",(req,res) => {
+    console.log(docname);
+    obj.docname = docname;
+    let pid = "select p_id from patient_info where d_id = (select diseases.d_id from diseases natural join doctor natural join users where users.name = '"+docname +"')";
+    db.query(pid,(err,result) => {
+        console.log("Result");
+        console.log(result);
+        obj.pids = result;
+        if (err) throw err;    
+        res.render("doctor",obj);    
+    });       
+});
+
+var obj2 ={};
+router.post("/viewpatient", (req,res) => {
+    var pid = req.body.choosepatient;
+    let sql = "select patient_info.p_id ,patient_info.p_name , patient_info.p_age , patient_info.p_bloodgrp , diseases.d_name from diseases natural join patient_info where patient_info.p_id ="+ pid ;
+    db.query(sql,(err,result) => {
+        console.log("Result");
+        console.log(result);
+        obj2 = {data: result};
+        if (err) throw err;
+        res.render("pview",obj2);    
+    });       
+});
+
+router.post("/prescription", (req,res) => {
+    res.render("prescriptionform");
 });
 
 //patient info

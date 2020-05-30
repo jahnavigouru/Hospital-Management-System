@@ -16,37 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `patient_info`
+-- Table structure for table `bill`
 --
 
-DROP TABLE IF EXISTS `patient_info`;
+DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `patient_info` (
-  `p_id` int NOT NULL AUTO_INCREMENT,
-  `p_dor` varchar(255) DEFAULT NULL,
-  `p_name` varchar(255) DEFAULT NULL,
-  `p_age` int DEFAULT NULL,
-  `p_gender` varchar(255) DEFAULT NULL,
-  `p_dob` varchar(255) DEFAULT NULL,
-  `p_bloodgrp` varchar(255) DEFAULT NULL,
-  `p_phn` int DEFAULT NULL,
-  `p_addr` varchar(255) DEFAULT NULL,
-  `p_emailid` varchar(255) DEFAULT NULL,
-  `d_id` int DEFAULT NULL,
-  PRIMARY KEY (`p_id`),
-  KEY `d_id` (`d_id`),
-  CONSTRAINT `patient_info_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `diseases` (`d_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `bill` (
+  `b_id` int NOT NULL,
+  `p_id` int DEFAULT NULL,
+  `type_of_bill` varchar(100) DEFAULT NULL,
+  `total_amt` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`b_id`),
+  KEY `id` (`p_id`),
+  CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `patient_info`
+-- Dumping data for table `bill`
 --
 
-LOCK TABLES `patient_info` WRITE;
-/*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
-/*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
+LOCK TABLES `bill` WRITE;
+/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-30 16:29:57
+-- Dump completed on 2020-05-30 21:29:11

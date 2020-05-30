@@ -1,0 +1,67 @@
+<!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/"></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/"></a>
+          </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Dropdown
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default"
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/users/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+  <br>
+  <br>
+  <br>
+  <form action="/prescription" method="POST">
+  <h1>Patient details</h1>
+  <p>ID :  <%= data[0].p_id %></p>
+  <p>Name :  <%= data[0].p_name %></p>
+  <p>Age :  <%= data[0].p_age %></p>
+  <p>Blood Group :  <%= data[0].p_bloodgrp %></p>
+  <p>Disease :  <%= data[0].d_name %></p>
+  <br>
+    <button>See previous medical records</button>
+  <!--Prescribe medicines-->
+  <button type="submit">Prescribe Medicines</button>
+</form>
+
+
+  

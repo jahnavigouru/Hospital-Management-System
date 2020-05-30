@@ -1,0 +1,89 @@
+<!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="/"></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/"></a>
+          </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Dropdown
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default"
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/users/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+  <br>
+  <br>
+  <br>
+  <div class="col-md-8 offset-2">
+    <div>
+      <form class="border border-light p-5" action="/" method="POST">
+        <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Prescription Form</p>
+          <div class="dates">
+            <label><i class="fas fa-calendar"></i> Date Of Prescription </label><br>
+            <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="date of giving Prescription" name="dop"><br>
+          </div>
+
+          <!-- First name -->
+          <label><i class="fas fa-user"></i> Patient Name </label><br>
+          <input type="text" id="name" class="form-control mb-4" placeholder="Patient Name" name="name" value="<%= typeof name != 'undefined' ? name : '' %>"/>
+
+          <!-- Age -->
+          <label><i class="fas fa-user"></i>Patient Age </label><br>
+          <input type="text" id="age" class="form-control mb-4" placeholder="Patient Age" name="age" value="<%= typeof age != 'undefined' ? age : '' %>"/>
+          
+          <!-- Medicines name and quantity -->
+          <label><i class="fas fa-user"></i> Medicine Name and quantity </label><br>
+          <input type="text" id="medicines" class="form-control mb-4" placeholder="Medicine Name and quantity" name="medicines" />
+
+          <!-- Lab tests if required any -->
+          <label><i class="fas fa-user"></i> Lab Tests </label><br>
+          <input type="text" id="labtests" class="form-control mb-4" placeholder="Lab Test if required" name="labtests" />
+
+          <!-- Next appointment date if necessary -->
+          <label><i class="fas fa-user"></i> Next appointment date</label><br>
+          <input type="date" id="doa" class="form-control mb-4" placeholder="Next appointment date if necessary" name="doa" />
+                    
+          <button class="btn btn-secondary" type="submit">Post</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  

@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `diseases`
+-- Table structure for table `doctor`
 --
 
-DROP TABLE IF EXISTS `diseases`;
+DROP TABLE IF EXISTS `doctor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `diseases` (
-  `d_id` int NOT NULL AUTO_INCREMENT,
-  `d_name` varchar(30) DEFAULT NULL,
+CREATE TABLE `doctor` (
   `doc_id` int DEFAULT NULL,
-  PRIMARY KEY (`d_id`),
-  KEY `id` (`doc_id`),
-  CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `room_no` int DEFAULT NULL,
+  `working_days` varchar(100) DEFAULT NULL,
+  `visitng_hrs` varchar(100) DEFAULT NULL,
+  `no_of_apointments` int DEFAULT NULL,
+  KEY `d_id` (`doc_id`),
+  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `diseases`
+-- Dumping data for table `doctor`
 --
 
-LOCK TABLES `diseases` WRITE;
-/*!40000 ALTER TABLE `diseases` DISABLE KEYS */;
-INSERT INTO `diseases` VALUES (1,'Physician',NULL),(2,'Neurosurgeon',NULL);
-/*!40000 ALTER TABLE `diseases` ENABLE KEYS */;
+LOCK TABLES `doctor` WRITE;
+/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+INSERT INTO `doctor` VALUES (7,101,'Mon,Tue,Wed,Thu,Fri','10:30 am to 4:30 pm',NULL);
+/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-30 16:29:58
+-- Dump completed on 2020-05-30 21:29:12
