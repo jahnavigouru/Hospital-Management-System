@@ -29,7 +29,7 @@ CREATE TABLE `diseases` (
   PRIMARY KEY (`d_id`),
   KEY `id` (`doc_id`),
   CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,11 @@ CREATE TABLE `diseases` (
 
 LOCK TABLES `diseases` WRITE;
 /*!40000 ALTER TABLE `diseases` DISABLE KEYS */;
+<<<<<<< HEAD:Databases/hospitalmanagement_diseases0.sql
 INSERT INTO `diseases` VALUES (1,'Physician',7),(2,'Neurosurgeon',NULL);
+=======
+INSERT INTO `diseases` VALUES (1,'Physician',3),(2,'Neurosurgeon',4),(3,'Mentalist',6);
+>>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4:Databases/hospitalmanagment_diseases.sql
 /*!40000 ALTER TABLE `diseases` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +55,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD:Databases/hospitalmanagement_diseases0.sql
 -- Dump completed on 2020-05-31 16:21:37
+=======
+-- Dump completed on 2020-05-31 16:26:16
+>>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4:Databases/hospitalmanagment_diseases.sql

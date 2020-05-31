@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospitalmanagement
+-- Host: localhost    Database: hospitalmanagment
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `doctor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `doctor` (
   `doc_id` int DEFAULT NULL,
-  `room_no` int DEFAULT NULL,
+  `room_no` varchar(255) DEFAULT NULL,
   `working_days` varchar(100) DEFAULT NULL,
   `visitng_hrs` varchar(100) DEFAULT NULL,
   `no_of_apointments` int DEFAULT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (7,101,'Mon,Tue,Wed,Thu,Fri','10:30 am to 4:30 pm',NULL);
+INSERT INTO `doctor` VALUES (3,'R101','Monday, Tuesday, Wednesday, Thursday, Friday','10:00 am - 5:30 pm',50),(4,'R202','Monday, Wednesday, Friday, Saturday','10:00 am - 3:30 pm',25),(6,'R102','Tuesday, Thursday, Sunday','09:00 am - 07:00 pm',10);
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 16:21:37
+-- Dump completed on 2020-05-31 16:26:16

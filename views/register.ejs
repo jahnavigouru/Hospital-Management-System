@@ -31,7 +31,10 @@
               
               <label><i class="fas fa-mobile"></i> Mobile Number </label><br>
               <input type="text" id="age" class="form-control mb-4" placeholder="Mobile Number" name="phone" value="<%= typeof phone != 'undefined' ? phone : '' %>"/>
-             
+              
+              <label><i class="fas fa-address-card"></i> Address </label><br>
+              <input type="text" id="address" class="form-control mb-4" placeholder="Address" name="address" value="<%= typeof address != 'undefined' ? address : '' %>"/>
+
               <label><i class="fas fa-users"></i> Position </label><br>
               <select class="browser-default custom-select mb-4" name="type">
                 <option value="Receptionist">Receptionist</option>
@@ -39,6 +42,16 @@
                 <option value="Accountant">Accountant</option>
               </select>
 
+              <label><i class="fas fa-user-md"></i> Position </label><br>
+              <select class="browser-default custom-select mb-4" name="spe">
+                <option value= "NA"> NA </option>
+                <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
+                  <%for (var i = 0; i < diseases.length; i++) { %>
+                    <option value="<%= diseases[i].d_id %>"> <%= diseases[i].d_name %> </option>
+                  <%}%>
+                <% } %>
+              </select>
+            
               <div class="dates">
                 <label><i class="fas fa-calendar"></i> Date Of Joining </label><br>
                 <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date of Joining" name="date"><br>

@@ -94,13 +94,52 @@ router.post('/patientdetails', (req, res) => {
         res.redirect('/patientinfo')
     }
     else{
-        let details = `insert into patient_info set p_dor="${date}",p_name="${name}",p_age=${age},p_gender="${gender}",p_dob="${DOB}",p_bloodgrp="${BloodGrp}",p_phn = ${phone},p_addr="${address}",p_emailid="${email}", d_id = ${d_id}`
-        db.query(details, (err, saved) => {
+        // check user exist
+        let user = `select p_phn from patient_info where p_phn = ${phone}`
+        db.query(user, (err, exists) => {
             if(err) throw err
-            req.flash('P_success_msg', 'The details have been successfully stored');
-            res.redirect("/patientinfo");
+            if(exists.length > 0) {
+                P_errors.push({ msg: `${exists[0].p_phn} Already registered` })
+                req.flash('temp', P_errors)
+                res.redirect('/patientinfo')
+            }
+
+            //insert 
+            let details = `insert into patient_info set p_dor="${date}",p_name="${name}",p_age=${age},p_gender="${gender}",p_dob="${DOB}",p_bloodgrp="${BloodGrp}",p_phn = "${phone}", p_addr="${address}",p_emailid="${email}", d_id = ${d_id}`
+            db.query(details, (err, saved) => {
+            if(err) throw err
+            // success
+            let doctor = `select users.name, doctor.room_no from users,doctor where users.id = ( select doc_id from diseases where d_id = ${d_id} ) and doctor.doc_id = ( select doc_id from diseases where d_id = ${d_id} )`
+            db.query(doctor, (err, doc) => {
+                if(err) throw err
+                let id = `select id from patient_info where p_phn = "${phone}"`
+                db.query(id, (err, userID) => {
+                    if(err) throw err
+                    else {
+                        let temp_success = []
+                        temp_success.push({ msg: `You are have been successfully Registered with id_no: ${userID[0].id}`})
+                        temp_success.push({ msg: `please proceed to Room.no: ${doc[0].room_no} and Doctor: Dr. ${doc[0].name}`})
+                        req.flash('P_success_msg', temp_success)
+                        res.redirect('/patientinfo')
+                    } 
+                })
+            })
+          })
         })
     }
 })
 
+<<<<<<< HEAD
 module.exports = router
+=======
+// Doctor dashboard
+router.get('/Doc_dash', (req, res) => {
+    res.render('Doc_dash', {
+        name: req.user.name,
+        specialization: req.user.specialization
+    })
+})
+
+
+module.exports = router
+>>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4
