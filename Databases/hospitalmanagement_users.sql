@@ -16,38 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `patient_info`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `patient_info`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `patient_info` (
-  `p_id` int NOT NULL AUTO_INCREMENT,
-  `p_dor` varchar(255) DEFAULT NULL,
-  `p_name` varchar(255) DEFAULT NULL,
-  `p_age` int DEFAULT NULL,
-  `p_gender` varchar(255) DEFAULT NULL,
-  `p_dob` varchar(255) DEFAULT NULL,
-  `p_bloodgrp` varchar(255) DEFAULT NULL,
-  `p_phn` int DEFAULT NULL,
-  `p_addr` varchar(255) DEFAULT NULL,
-  `p_emailid` varchar(255) DEFAULT NULL,
-  `d_id` int DEFAULT NULL,
-  PRIMARY KEY (`p_id`),
-  KEY `d_id` (`d_id`),
-  CONSTRAINT `patient_info_ibfk_1` FOREIGN KEY (`d_id`) REFERENCES `diseases` (`d_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `UserType` varchar(255) DEFAULT NULL,
+  `DOB` varchar(255) DEFAULT NULL,
+  `Age` int DEFAULT NULL,
+  `Date_joning` varchar(255) DEFAULT NULL,
+  `phone_number` int DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `patient_info`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `patient_info` WRITE;
-/*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
-INSERT INTO `patient_info` VALUES (8,'14-05-2020','Lilly',23,'Female','18-06-1998','B+',1234567890,'India','lilly@gmail.com',1),(9,'30-05-2020','Robin',20,'Female','09-05-2000','O+',1234567890,'India','robin@gmail.com',1);
-/*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (6,'Jinal','Receptionist','20-06-2000',19,'30-05-2020',1234567890,'adhyarujinal@gmail.com','$2a$10$w6grmNAaYN8i.Jw7.lLMaOz1prb1Em/v9pQFsNgAVVA3bo2bAZueG'),(7,'Marshall','Doctor','13-03-1996',25,'21-05-2020',1234567890,'marshall@gmail.com','$2a$10$GtdrlGU9ZFn7UMQ0X9w/2ON2qWaNrhIAC9Voy.nf0T.SABVYAUQEu'),(8,'Jahnavi','Accountant','08-01-2000',20,'13-05-2020',1234567890,'jahnavi@gmail.com','$2a$10$eb1ZmD1bqJ8Z7UBbOIS6oeAmKv1Sdgh8lUQ65rrLzITFn6uIInAzW');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-30 21:29:11
+-- Dump completed on 2020-05-31 15:31:25
