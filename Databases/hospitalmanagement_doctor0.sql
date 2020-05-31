@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `bill`
+-- Table structure for table `doctor`
 --
 
-DROP TABLE IF EXISTS `bill`;
+DROP TABLE IF EXISTS `doctor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bill` (
-  `b_id` int NOT NULL,
-  `p_id` int DEFAULT NULL,
-  `type_of_bill` varchar(100) DEFAULT NULL,
-  `total_amt` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`b_id`),
-  KEY `id` (`p_id`),
-  CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `users` (`id`)
+CREATE TABLE `doctor` (
+  `doc_id` int DEFAULT NULL,
+  `room_no` int DEFAULT NULL,
+  `working_days` varchar(100) DEFAULT NULL,
+  `visitng_hrs` varchar(100) DEFAULT NULL,
+  `no_of_apointments` int DEFAULT NULL,
+  KEY `d_id` (`doc_id`),
+  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bill`
+-- Dumping data for table `doctor`
 --
 
-LOCK TABLES `bill` WRITE;
-/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
+LOCK TABLES `doctor` WRITE;
+/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+INSERT INTO `doctor` VALUES (7,101,'Mon,Tue,Wed,Thu,Fri','10:30 am to 4:30 pm',NULL);
+/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 15:31:26
+-- Dump completed on 2020-05-31 16:21:37
