@@ -10,17 +10,36 @@ const router = express.Router()
 router.get('/login', (req, res) => res.render('login'))
 
 //register page
-router.get('/register', (req, res) => res.render('register'))
+router.get('/register', (req, res) =>{
+    let diseases = 'select d_name, d_id from diseases'
+    db.query(diseases, (err, result) => {
+        if(err) throw err
+        res.render('register', {
+            diseases: result
+        })
+    })
+})
 
 //register handel
 router.post('/register', (req, res) => {
-    const { name, DOB, gender, age, phone, type, date, email, password, password2 } = req.body
+    const { name, DOB, gender, age, address ,phone, type, spe, date, email, password, password2 } = req.body
   
     let errors = []
 
     // Check required fields
-    if(!name || !DOB || !gender || !age || !type || !date || !email || !password || !password2 ) {
+    if(!name || !DOB || !gender || !age || !type || !date || !email || !password || !password2 || !address ) {
         errors.push({msg: 'Please fill in all fields'})
+    }
+
+    //Specialization
+    if(type !== 'Doctor') {
+        if(spe !== 'NA') {
+            errors.push({ msg: 'Please Check the Specialization' })
+        }
+    }else{
+        if(spe == 'NA'){
+            errors.push({ msg: 'Please Check the Specialization' })
+        }
     }
 
     // Check Age
@@ -44,19 +63,8 @@ router.post('/register', (req, res) => {
     }
 
     if(errors.length > 0) {
-        res.render('register', {
-            errors,
-            name, 
-            DOB, 
-            gender, 
-            age, 
-            phone,
-            type, 
-            date, 
-            email, 
-            password, 
-            password2
-        })
+        req.flash('entry', errors)
+        res.redirect('/users/register')
     }else{
         let find = `select email from users where email = "${email}"`
         db.query(find, (err, result) =>{
@@ -78,7 +86,7 @@ router.post('/register', (req, res) => {
                         const pass = hash
 
                         //save new user
-                        let newUser = `insert into users set name = "${name}", UserType = "${type}", DOB = "${DOB}", Age = ${age}, Date_joning = "${date}", phone_number = ${phone}, email = "${email}", password = "${pass}" `
+                        let newUser = `insert into users set name = "${name}", UserType = "${type}", specialization = "${spe}", DOB = "${DOB}", Age = ${age}, address = "${address}", Date_joning = "${date}", phone_number = "${phone}", email = "${email}", password = "${pass}" `
                         db.query(newUser, (err, saved) => {
                             if(err) throw err
                             req.flash('success_msg', 'You are now Successfully registered')
@@ -93,11 +101,28 @@ router.post('/register', (req, res) => {
 
 // Login Handel
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-      successRedirect: '/Rep_dashboard',
-      failureRedirect: '/users/login',
-      failureFlash: true
-    })(req, res, next);
+    var email = req.body.email
+    if(email.includes('management')) {
+        passport.authenticate('local', {
+            successRedirect: '/Rep_dashboard',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
+    if(email.includes('doctor')) {
+        passport.authenticate('local', {
+            successRedirect: '/Doc_dash',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
+    if(email.includes('accountant')) {
+        passport.authenticate('local', {
+            successRedirect: '/Rep_dashboard',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
   })
 
 //logout
