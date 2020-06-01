@@ -8,18 +8,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home
+          <a class="nav-link" href="/Rep_dashboard">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="/"></a>
+        <li class="nav-item">
+          <a class="nav-link" href="/patientinfo">Patient Registration</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/"></a>
-          </li> -->
+          <a class="nav-link" href="/appointment">Set Appointment</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Out_patient</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -50,31 +50,42 @@
   <br>
   <br>
   <br>
+  <h1><img src="https://img.icons8.com/nolan/64/front-desk.png"/> </h1>
+
   <div class="col-md-8 offset-2">
     <div>
-      <form class="border border-light p-5" action="/records" method="POST">
-        <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Prescription Form</p>
+      <form class="border border-light p-5" action="/setappointment" method="POST">
+        <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Patient Appointment</p>
+        <%- include('./partials/messages.ejs'); %>
+          <div class="dates">
+            <label><i class="fas fa-calendar"></i> Date Of Appointment </label><br>
+            <input type="date" autocomplete="off" class="form-control" placeholder="Date of appointment" name="doa" ><br>
+          </div>
+
           <!-- First name -->
           <label><i class="fas fa-user"></i> Patient Name </label><br>
-          <input type="text" id="name" class="form-control mb-4" name="p_name" value="<%=p_name %>" readonly/>
+          <input type="name" id="name" class="form-control mb-4" placeholder="Patient Name" name="p_name" />
 
-          <!-- Medicines name and quantity -->
-          <label><i class="fas fa-user"></i> Medicine Name and quantity </label><br>
-          <input type="text" id="medicines" class="form-control mb-4" placeholder="Medicine Name and quantity" name="medicines" />
-
-          <!-- Lab tests if required any -->
-          <label><i class="fas fa-user"></i> Lab Tests </label><br>
-          <input type="text" id="labtests" class="form-control mb-4" placeholder="Lab Test if required" name="labtests" />
-
-          <!-- Next appointment date if necessary -->
-          <label><i class="fas fa-user"></i> Next appointment date</label><br>
-          <input type="date" id="doa" class="form-control mb-4" placeholder="Next appointment date if necessary" name="doa" />
-                    
+          <!-- Age -->
+          <label><i class="fas fa-user-md"></i> Disease </label><br>
+          <select class="browser-default custom-select mb-4" name="disease">
+            <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
+              <%for (var i = 0; i < diseases.length; i++) { %>
+                <option value="<%= diseases[i].d_id %>"> <%= diseases[i].d_name %> </option>
+              <%}%>
+            <% } %>
+          </select>
+          
+          <label><i class="fas fa-user-md"></i> Doctor </label><br>
+              <select class="browser-default custom-select mb-4" name="doctor">
+                <% if (typeof doctors !== 'undefined' && doctors.length > 0) {%>
+                  <%for (var i = 0; i < doctors.length; i++) { %>
+                    <option value="<%= doctors[i].id %>"> <%= doctors[i].name %> </option>
+                  <%}%>
+                <% } %>   
+              </select>
+          
           <button class="btn btn-secondary" type="submit">Post</button>
       </div>
     </form>
   </div>
-</div>
-
-
-  

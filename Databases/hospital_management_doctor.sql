@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: hospitalmanagement
+-- Host: localhost    Database: hospital_management
 -- ------------------------------------------------------
 -- Server version	8.0.19
 
@@ -16,34 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `diseases`
+-- Table structure for table `doctor`
 --
 
-DROP TABLE IF EXISTS `diseases`;
+DROP TABLE IF EXISTS `doctor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `diseases` (
-  `d_id` int NOT NULL AUTO_INCREMENT,
-  `d_name` varchar(30) DEFAULT NULL,
+CREATE TABLE `doctor` (
   `doc_id` int DEFAULT NULL,
-  PRIMARY KEY (`d_id`),
-  KEY `id` (`doc_id`),
-  CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `room_no` varchar(255) DEFAULT NULL,
+  `working_days` varchar(100) DEFAULT NULL,
+  `visitng_hrs` varchar(100) DEFAULT NULL,
+  `no_of_apointments` int DEFAULT NULL,
+  KEY `d_id` (`doc_id`),
+  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `diseases`
+-- Dumping data for table `doctor`
 --
 
-LOCK TABLES `diseases` WRITE;
-/*!40000 ALTER TABLE `diseases` DISABLE KEYS */;
-<<<<<<< HEAD:Databases/hospitalmanagement_diseases0.sql
-INSERT INTO `diseases` VALUES (1,'Physician',7),(2,'Neurosurgeon',NULL);
-=======
-INSERT INTO `diseases` VALUES (1,'Physician',3),(2,'Neurosurgeon',4),(3,'Mentalist',6);
->>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4:Databases/hospitalmanagment_diseases.sql
-/*!40000 ALTER TABLE `diseases` ENABLE KEYS */;
+LOCK TABLES `doctor` WRITE;
+/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
+INSERT INTO `doctor` VALUES (3,'R101','Monday, Tuesday, Wednesday, Thursday, Friday','10:00 am - 5:30 pm',50),(4,'R202','Monday, Wednesday, Friday, Saturday','10:00 am - 3:30 pm',25),(6,'R102','Tuesday, Thursday, Sunday','09:00 am - 07:00 pm',10);
+/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,8 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD:Databases/hospitalmanagement_diseases0.sql
--- Dump completed on 2020-05-31 16:21:37
-=======
--- Dump completed on 2020-05-31 16:26:16
->>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4:Databases/hospitalmanagment_diseases.sql
+-- Dump completed on 2020-06-01 14:30:25

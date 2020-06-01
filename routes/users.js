@@ -86,7 +86,7 @@ router.post('/register', (req, res) => {
                         const pass = hash
 
                         //save new user
-                        let newUser = `insert into users set name = "${name}", UserType = "${type}", specialization = "${spe}", DOB = "${DOB}", Age = ${age}, address = "${address}", Date_joning = "${date}", phone_number = "${phone}", email = "${email}", password = "${pass}" `
+                        let newUser = `insert into users set name = "${name}", UserType = "${type}", specialization = "${spe}", DOB = "${DOB}", Age = ${age},gender = "${gender}", address = "${address}", Date_joining = "${date}", phone_number = "${phone}", email = "${email}", password = "${pass}" `
                         db.query(newUser, (err, saved) => {
                             if(err) throw err
                             req.flash('success_msg', 'You are now Successfully registered')
@@ -111,7 +111,7 @@ router.post('/login', (req, res, next) => {
     }
     if(email.includes('doctor')) {
         passport.authenticate('local', {
-            successRedirect: '/Doc_dash',
+            successRedirect: '/doctor',
             failureRedirect: '/users/login',
             failureFlash: true
         })(req, res, next);

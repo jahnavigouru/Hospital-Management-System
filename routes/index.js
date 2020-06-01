@@ -4,25 +4,17 @@ const { ensureAuthenticated } = require('../config/auth')
 
 //DB 
 const db = require('../app')
-var docname;
+
 //Welcome Page
 router.get('/', (req, res) => res.render('welcome'))
 
 // Dashboard Page
 router.get('/Rep_dashboard',  ensureAuthenticated, (req, res) => {
-    var user = req.user.UserType;
-    if(user == "Doctor") {
-        db.query("select name from users where id="+req.user.id,(err,result) => {
-            if (err) throw err;
-            docname = result[0].name;      
-            res.redirect("/doctor");
-        });
-    }
-    else {
+    var user = req.user.UserType;    
         res.render('Rep_dashboard', {
             UserType: req.user.UserType
         })
-    }    
+      
 })
 
 //patient registration
@@ -31,30 +23,72 @@ router.get("/patientinfo",(req,res) => {
     db.query(diseases, (err, result) => {
         if(err) throw err
         res.render('patientinfo', {
-            diseases: result
+            diseases: result,docname: req.user.name
         })
     })
 });
 
+router.get("/appointment",(req,res) => {
+    let diseases = 'select d_name,d_id from diseases'
+    let doctors = 'select  name,id from users where UserType = "Doctor"';
+    db.query(doctors, (err,doctors) => {
+        if(err) throw err;
+        db.query(diseases, (err, diseases) => {
+            if(err) throw err
+            res.render('appointment', {
+                diseases: diseases,doctors: doctors
+            })
+        })
+    })   
+});
+
+router.post("/setappointment", (req,res) => {
+    const {doa,p_name,doctor} = req.body
+    let check = `select p_id from patient_info where p_name="${p_name}"`
+    db.query(check , (err,result) => {
+        if (err) throw err
+        if(result.length == 0) {
+            console.log("Patient is not registered");
+            res.render("patientinfo");
+        }
+        else {
+            let details = `insert into records set doa="${doa}",p_id=${result[0].p_id},doc_id=${doctor}`
+            db.query(details, (err,result) => {
+            if (err) throw err
+            console.log("Inserted successfully");
+            res.render("Rep_dashboard",{UserType: "Recpetionist"});
+        })
+        }
+    })    
+});
+const d = new Date();
+    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);    
+    var dayy = `${ye}-${mo}-${da}`;
+
 var obj = {};
-//patient registration
-router.get("/doctor",(req,res) => {
-    console.log(docname);
-    obj.docname = docname;
-    let pid = "select p_id from patient_info where d_id = (select diseases.d_id from diseases natural join doctor natural join users where users.name = '"+docname +"')";
-    db.query(pid,(err,result) => {
-        console.log("Result");
-        console.log(result);
-        obj.pids = result;
-        if (err) throw err;    
-        res.render("doctor",obj);    
-    });       
+router.get("/doctor",(req,res) => {   
+    var email = req.user.email;
+    let info = `select name,id from users where email = "${email}" `
+    db.query(info , (err,result1) => {
+        if (err) throw err
+        let pid = `select p_id from records where doc_id = "${result1[0].id}" and doa="${dayy}" and prescriptions IS NULL`
+        db.query(pid,(err,result) => {
+            console.log("Result");
+            console.log(result);
+            obj.docname = result1[0].name;
+            obj.pids = result;
+            if (err) throw err;    
+            res.render("doctor",obj);    
+        });       
+    })
 });
 
 var obj2 ={};
 router.post("/viewpatient", (req,res) => {
     var pid = req.body.choosepatient;
-    let sql = "select patient_info.p_id ,patient_info.p_name , patient_info.p_age , patient_info.p_bloodgrp , diseases.d_name from diseases natural join patient_info where patient_info.p_id ="+ pid ;
+    let sql = "select patient_info.p_id ,patient_info.p_name , patient_info.p_age , patient_info.p_bloodgrp  from patient_info where patient_info.p_id ="+ pid ;
     db.query(sql,(err,result) => {
         console.log("Result");
         console.log(result);
@@ -65,7 +99,61 @@ router.post("/viewpatient", (req,res) => {
 });
 
 router.post("/prescription", (req,res) => {
-    res.render("prescriptionform");
+    const p_name = req.body.p_name;
+    res.render("prescriptionform",{p_name: p_name});
+});
+
+var obj3 = {};
+router.post("/records", (req,res) => {
+    const {p_name , medicines , labtests, doa } = req.body;
+    console.log(p_name);
+    console.log(medicines);
+    console.log(labtests);
+    console.log(doa);
+    let p_id ='select p_id from patient_info where p_name="'+ p_name +'"';
+    db.query(p_id,(err,result) => {
+        if (err) throw err
+        console.log("p_id");
+        console.log(result);
+        console.log(result[0].p_id);
+
+        //updating the row for current appointment 
+        let details = `update records set prescriptions="${medicines}",lab_tests="${labtests}" where p_id=${result[0].p_id}`
+        db.query(details,(err,updated) => {
+            if (err) throw err
+            console.log("Updated the current appointment row");
+        });  
+
+        //inserting column for next date of appointment
+        if(doa.length != 0) {
+            let sql = `select doc_id from records where p_id=${result[0].p_id} and doa="${dayy}"`
+            db.query(sql,(err,insert) => {
+                if (err) throw err
+                let nextappt = `insert into records set doa="${doa}",p_id = ${result[0].p_id}, doc_id="${insert[0].doc_id}"`
+                db.query(nextappt,(err,appointment) => {
+                    if (err) throw err;
+                    else {
+                        console.log("next appointment added");
+                    }
+                })
+            });              
+        }
+        
+        //values to pass in the doctor page
+        let info = `select users.id ,users.name from records natural join users where records.p_id = ${result[0].p_id} and records.doa="${dayy}" and records.doc_id = users.id`
+        db.query(info , (err,result1) => {
+        if (err) throw err
+            let pid = `select p_id from records where doc_id = "${result1[0].id}" and doa="${dayy}" and prescriptions IS NULL`
+            db.query(pid,(err,result2) => {
+                console.log("Result2");
+                console.log(result2);
+                obj3.docname = result1[0].name;
+                obj3.pids = result2;
+                if (err) throw err;    
+                res.render("doctor",obj3);    
+            });            
+        })          
+    });
 });
 
 //patient info
@@ -129,9 +217,6 @@ router.post('/patientdetails', (req, res) => {
     }
 })
 
-<<<<<<< HEAD
-module.exports = router
-=======
 // Doctor dashboard
 router.get('/Doc_dash', (req, res) => {
     res.render('Doc_dash', {
@@ -142,4 +227,3 @@ router.get('/Doc_dash', (req, res) => {
 
 
 module.exports = router
->>>>>>> c9fa6efb4731a0d308407b13da4ae970aab19bb4

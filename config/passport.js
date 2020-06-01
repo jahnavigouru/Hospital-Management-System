@@ -7,7 +7,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    database: 'hospitalmanagement'
+    database: 'hospital_management'
 })
 
 module.exports = function(passport) {

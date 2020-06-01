@@ -53,10 +53,9 @@
   <form action="/prescription" method="POST">
   <h1>Patient details</h1>
   <p>ID :  <%= data[0].p_id %></p>
-  <p>Name :  <%= data[0].p_name %></p>
+  <p>Name :  <input type="text" value="<%= data[0].p_name %>" name="p_name" readonly></p>
   <p>Age :  <%= data[0].p_age %></p>
   <p>Blood Group :  <%= data[0].p_bloodgrp %></p>
-  <p>Disease :  <%= data[0].d_name %></p>
   <br>
     <button>See previous medical records</button>
   <!--Prescribe medicines-->
