@@ -16,32 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `doctor`
+-- Table structure for table `lab_tests`
 --
 
-DROP TABLE IF EXISTS `doctor`;
+DROP TABLE IF EXISTS `lab_tests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `doctor` (
-  `doc_id` int DEFAULT NULL,
-  `room_no` varchar(255) DEFAULT NULL,
-  `working_days` varchar(100) DEFAULT NULL,
-  `visitng_hrs` varchar(100) DEFAULT NULL,
-  `consultancy_fee` int DEFAULT NULL,
-  `no_of_apointments` int DEFAULT NULL,
-  KEY `d_id` (`doc_id`),
-  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
+CREATE TABLE `lab_tests` (
+  `l_id` int DEFAULT NULL,
+  `l_name` varchar(255) DEFAULT NULL,
+  `l_cost` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doctor`
+-- Dumping data for table `lab_tests`
 --
 
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (3,'R101','Monday, Tuesday, Wednesday, Thursday, Friday','10:00 am - 5:30 pm',200,50),(4,'R202','Monday, Wednesday, Friday, Saturday','10:00 am - 3:30 pm',150,25),(6,'R102','Tuesday, Thursday, Sunday','09:00 am - 07:00 pm',100,10);
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
+LOCK TABLES `lab_tests` WRITE;
+/*!40000 ALTER TABLE `lab_tests` DISABLE KEYS */;
+INSERT INTO `lab_tests` VALUES (1,'Blood Test',NULL),(2,'Liver Function Tests',NULL),(3,'MRI',NULL);
+/*!40000 ALTER TABLE `lab_tests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

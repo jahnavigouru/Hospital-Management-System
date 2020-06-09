@@ -16,32 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `doctor`
+-- Table structure for table `bill`
 --
 
-DROP TABLE IF EXISTS `doctor`;
+DROP TABLE IF EXISTS `bill`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `doctor` (
-  `doc_id` int DEFAULT NULL,
-  `room_no` varchar(255) DEFAULT NULL,
-  `working_days` varchar(100) DEFAULT NULL,
-  `visitng_hrs` varchar(100) DEFAULT NULL,
-  `consultancy_fee` int DEFAULT NULL,
-  `no_of_apointments` int DEFAULT NULL,
-  KEY `d_id` (`doc_id`),
-  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `bill` (
+  `bill_id` int NOT NULL AUTO_INCREMENT,
+  `p_id` int DEFAULT NULL,
+  `p_doa` varchar(255) DEFAULT NULL,
+  `bill_type` varchar(255) DEFAULT NULL,
+  `total_cost` int DEFAULT NULL,
+  PRIMARY KEY (`bill_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doctor`
+-- Dumping data for table `bill`
 --
 
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (3,'R101','Monday, Tuesday, Wednesday, Thursday, Friday','10:00 am - 5:30 pm',200,50),(4,'R202','Monday, Wednesday, Friday, Saturday','10:00 am - 3:30 pm',150,25),(6,'R102','Tuesday, Thursday, Sunday','09:00 am - 07:00 pm',100,10);
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
+LOCK TABLES `bill` WRITE;
+/*!40000 ALTER TABLE `bill` DISABLE KEYS */;
+INSERT INTO `bill` VALUES (3,9,'08-06-2020','Registration-500, consultancy_fee-200',NULL),(4,10,'08-06-2020','Registration-500, consultancy_fee-200',NULL),(5,10,'11-06-2020','consultancy_fee-200',NULL);
+/*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

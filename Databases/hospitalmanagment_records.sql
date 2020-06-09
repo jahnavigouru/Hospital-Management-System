@@ -16,32 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `doctor`
+-- Table structure for table `records`
 --
 
-DROP TABLE IF EXISTS `doctor`;
+DROP TABLE IF EXISTS `records`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `doctor` (
-  `doc_id` int DEFAULT NULL,
-  `room_no` varchar(255) DEFAULT NULL,
-  `working_days` varchar(100) DEFAULT NULL,
-  `visitng_hrs` varchar(100) DEFAULT NULL,
-  `consultancy_fee` int DEFAULT NULL,
-  `no_of_apointments` int DEFAULT NULL,
-  KEY `d_id` (`doc_id`),
-  CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
+CREATE TABLE `records` (
+  `doa` varchar(255) DEFAULT NULL,
+  `p_id` int DEFAULT NULL,
+  `d_id` int DEFAULT NULL,
+  `meds` varchar(255) DEFAULT NULL,
+  `prescription` varchar(255) DEFAULT NULL,
+  `LabTests` varchar(255) DEFAULT NULL,
+  KEY `d_id` (`d_id`),
+  KEY `p_id` (`p_id`),
+  CONSTRAINT `d_id` FOREIGN KEY (`d_id`) REFERENCES `diseases` (`d_id`),
+  CONSTRAINT `p_id` FOREIGN KEY (`p_id`) REFERENCES `patient_info` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doctor`
+-- Dumping data for table `records`
 --
 
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (3,'R101','Monday, Tuesday, Wednesday, Thursday, Friday','10:00 am - 5:30 pm',200,50),(4,'R202','Monday, Wednesday, Friday, Saturday','10:00 am - 3:30 pm',150,25),(6,'R102','Tuesday, Thursday, Sunday','09:00 am - 07:00 pm',100,10);
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
+LOCK TABLES `records` WRITE;
+/*!40000 ALTER TABLE `records` DISABLE KEYS */;
+INSERT INTO `records` VALUES ('08-06-2020',9,1,'Dolo 650-1-0-1 for 5 days,Adderall-0-1-0 for 2 days,','Very Bad,\r\nvisit after 3 days','Blood Test'),('08-06-2020',10,1,NULL,'NA',NULL),('11-06-2020',10,1,NULL,'NA',NULL);
+/*!40000 ALTER TABLE `records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-10  2:42:42
+-- Dump completed on 2020-06-10  2:42:43

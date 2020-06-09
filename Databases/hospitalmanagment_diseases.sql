@@ -29,7 +29,7 @@ CREATE TABLE `diseases` (
   PRIMARY KEY (`d_id`),
   KEY `id` (`doc_id`),
   CONSTRAINT `diseases_ibfk_1` FOREIGN KEY (`doc_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `diseases` (
 
 LOCK TABLES `diseases` WRITE;
 /*!40000 ALTER TABLE `diseases` DISABLE KEYS */;
-INSERT INTO `diseases` VALUES (1,'Physician',3),(2,'Neurosurgeon',4),(3,'Mentalist',6);
+INSERT INTO `diseases` VALUES (1,'Physician',3),(2,'Neurosurgeon',4),(3,'Psychiatrist',6),(4,'ENT',7),(5,'Orthopedician',NULL),(6,'Gastroenterologist',NULL),(7,'Urologist',NULL),(8,'Dentist',NULL),(9,'Pediatrician',NULL),(10,'Cardiologist',NULL),(11,'Endrocrinnologist',NULL),(12,'Opthalmologist',NULL),(13,'Dermatologist',NULL),(14,'Oncologist',NULL),(15,'Pulmonologist',NULL),(16,'Gynaecologist',NULL);
 /*!40000 ALTER TABLE `diseases` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-31 16:26:16
+-- Dump completed on 2020-06-10  2:42:42
