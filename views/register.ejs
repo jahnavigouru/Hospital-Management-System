@@ -40,6 +40,7 @@
                 <option value="Receptionist">Receptionist</option>
                 <option value="Doctor">Doctor</option>
                 <option value="Accountant">Accountant</option>
+                <option value="Accountant">Pharmacist</option>
               </select>
 
               <label><i class="fas fa-user-md"></i> Position </label><br>
@@ -47,7 +48,7 @@
                 <option value= "NA"> NA </option>
                 <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
                   <%for (var i = 0; i < diseases.length; i++) { %>
-                    <option value="<%= diseases[i].d_id %>"> <%= diseases[i].d_name %> </option>
+                    <option value="<%= diseases[i].d_name %>"> <%= diseases[i].d_name %> </option>
                   <%}%>
                 <% } %>
               </select>
@@ -84,6 +85,7 @@
           </div>
         </div>
       </div>
+      
 
 
       

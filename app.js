@@ -4,6 +4,7 @@ const mysql = require('mysql')
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 //express-session
+app.use(cookieParser('saloni_jahnavi_jinal'))
 app.use(session ({
     secret: 'saloni_jahnavi_jinal',
     resave: true,
@@ -40,7 +42,14 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error')
     res.locals.temp = req.flash('temp')
     res.locals.entry = req.flash('entry')
-    
+    res.locals.id = req.flash('id')
+    res.locals.info = req.flash('info')
+    res.locals.record_entry = req.flash('record_entry')
+    res.locals.OutApp = req.flash('OutApp')
+    res.locals.room = req.flash('room')
+    res.locals.queue = req.flash('queue')
+    res.locals.prescription = req.flash('prescription')
+   
     next()
 })
 

@@ -17,7 +17,7 @@
               <a class="nav-link" href="/patientinfo">Patient Registration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="/outPatient">Out_Patient</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -111,7 +111,24 @@
               <label><i class="fas fa-envelope"></i> E-mail </label><br>
               <input type="text" id="email" class="form-control mb-4" placeholder="E-mail" name="email" value="<%= typeof email != 'undefined' ? email : '' %>" />
               
-              <button class="btn btn-secondary" type="submit">Post</button>
+               <!-- Default checked -->
+               <div class="custom-control custom-checkbox">
+                <input name="fee" type="checkbox" class="custom-control-input" id="defaultChecked2" checked required>
+                <label class="custom-control-label" for="defaultChecked2"><i class="fas fa-hand-holding-usd"> Registration fee: Rs. 500</i></label>
+              </div>
+              <br>
+              
+               <label><i class="fas fa-hand-holding-usd"></i> Consultancy Fee </label><br>
+              <select class="browser-default custom-select mb-4" name="consultancy_fee">
+                  <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
+                    <%for (var i = 0; i < diseases.length; i++) { %>
+                      <option value="<%= diseases[i].consultancy_fee %>"> <%= diseases[i].d_name %> : <%= diseases[i].consultancy_fee %> </option>
+                    <%}%>
+                  <% } %>
+              </select>
+              <br>
+              
+              <button class="btn blue-gradient" type="submit">Register</button>
           </div>
         </form>
       </div>

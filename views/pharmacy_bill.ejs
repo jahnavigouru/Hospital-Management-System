@@ -8,15 +8,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/Doc_dash">Home
+          <a class="nav-link" href="/Pharmacy_dashboard">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/record">Counsult</a>
+          <a class="nav-link" href="/pharmacy">Pharmacy Section</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="/outPatient">Out_Patient</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -36,9 +36,9 @@
             <i class="fas fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="/users/logout">Logout</a>
-        </div>
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/users/logout">Logout</a>
+          </div>
         </li>
       </ul>
     </div>
@@ -47,43 +47,22 @@
   <br>
   <br>
   <br>
-  <br>
-  <br>
-    
-  <%- include('./partials/messages.ejs'); %>
-    
-<div class="container-fluid">
-  <!-- Card -->
-<div class="card">
-
-  <!-- Card content -->
-  <div class="card-body text-center col-14">
-
-    <!-- Title -->
-    <h4 class="card-title">Dr. <%= name %></h4>
-    <!-- Text -->
-    <i class="fas fa-quote-left fa-2x fa-pull-left"></i>
-    Gatsby believed in the green light, the orgastic future that year by year recedes before us.
-    It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
-    And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
-    <!-- Basic dropdown -->
-    <br>
-    <br>
-    <div class="dates">
-      <form action="/P_queue" method="POST">
-      <label><i class="fas fa-calendar"></i> Date Of Joining </label><br>
-      <input type="text" autocomplete="off" id="user1" class="form-control " placeholder="Date" name="date"><br>
-      <button type="submit" class="btn blue-gradient"><i class="fas fa-th-list pr-2" aria-hidden="true"></i>Submit</button>
-      </form>
-    </div>
-    <br>
-    <%- include('./partials/record_entry.ejs'); %>
+  <div class="col-md-8 offset-2 border border-light p-5">
+      <div>
+          <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/hand-with-a-pill.png"/> Pharmacy</p>
+          <form action="/PharmacyID" method="POST">
+          <%- include('./partials/messages.ejs'); %>
+          <div class="md-form input-with-pre-icon ID">
+            <i class="fas fa-user input-prefix"></i>
+            <input type="text" id="prefixInside" class="form-control" name="PharmacyID" required>
+            <label for="prefixInside">Patient's ID</label>
+            </div>
+            <div class="dates">
+            <label><i class="fas fa-calendar"></i> Date Of Joining </label><br>
+            <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date"><br>
+            </div>
+            <button class="btn purple-gradient" type="submit">Submit</button>
+          </form>
+          <%- include('./partials/record_entry.ejs'); %>
+      </div>
   </div>
-
-</div>
-<!-- Card -->
-
-</div>
-
-
-  
