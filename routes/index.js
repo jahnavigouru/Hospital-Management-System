@@ -367,7 +367,7 @@ router.post('/labpay', (req, res) => {
      })
 })
    
-//labDashboard
+//lab_Dashboard
 router.get('/laboratory', (req, res) => {
     res.render('laboratory', {
         UserType: req.user.UserType

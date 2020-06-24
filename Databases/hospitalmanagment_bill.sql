@@ -26,10 +26,12 @@ CREATE TABLE `bill` (
   `bill_id` int NOT NULL AUTO_INCREMENT,
   `p_id` int DEFAULT NULL,
   `p_doa` varchar(255) DEFAULT NULL,
-  `bill_type` varchar(255) DEFAULT NULL,
+  `Registration` int DEFAULT NULL,
+  `consultancy_fee` int DEFAULT NULL,
+  `Lab_fee` varchar(255) DEFAULT NULL,
   `total_cost` int DEFAULT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (3,9,'08-06-2020','Registration-500, consultancy_fee-200',NULL),(4,10,'08-06-2020','Registration-500, consultancy_fee-200',NULL),(5,10,'11-06-2020','consultancy_fee-200',NULL);
+INSERT INTO `bill` VALUES (3,9,'08-06-2020',500,200,NULL,NULL),(4,10,'08-06-2020',500,200,NULL,NULL),(5,10,'11-06-2020',NULL,200,NULL,NULL),(6,11,'22-06-2020',500,200,'Liver Function Tests: Rs. 100,MRI: Rs. 100',NULL),(7,11,'23-06-2020',NULL,200,'Blood Test: Rs. 100,Liver Function Tests: Rs. 100,MRI: Rs. 100',NULL),(8,11,'24-06-2020',NULL,100,NULL,NULL),(9,9,'24-06-2020',NULL,200,NULL,NULL);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-10  2:42:42
+-- Dump completed on 2020-06-24 13:18:36

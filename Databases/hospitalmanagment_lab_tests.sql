@@ -35,7 +35,7 @@ CREATE TABLE `lab_tests` (
 
 LOCK TABLES `lab_tests` WRITE;
 /*!40000 ALTER TABLE `lab_tests` DISABLE KEYS */;
-INSERT INTO `lab_tests` VALUES (1,'Blood Test',NULL),(2,'Liver Function Tests',NULL),(3,'MRI',NULL);
+INSERT INTO `lab_tests` VALUES (1,'Blood Test',100),(2,'Liver Function Tests',100),(3,'MRI',100);
 /*!40000 ALTER TABLE `lab_tests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-10  2:42:42
+-- Dump completed on 2020-06-24 13:18:35

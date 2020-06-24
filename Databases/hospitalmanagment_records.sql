@@ -42,7 +42,7 @@ CREATE TABLE `records` (
 
 LOCK TABLES `records` WRITE;
 /*!40000 ALTER TABLE `records` DISABLE KEYS */;
-INSERT INTO `records` VALUES ('08-06-2020',9,1,'Dolo 650-1-0-1 for 5 days,Adderall-0-1-0 for 2 days,','Very Bad,\r\nvisit after 3 days','Blood Test'),('08-06-2020',10,1,NULL,'NA',NULL),('11-06-2020',10,1,NULL,'NA',NULL);
+INSERT INTO `records` VALUES ('08-06-2020',9,1,'Dolo 650-1-0-1 for 5 days,Adderall-0-1-0 for 2 days,','Very Bad,\r\nvisit after 3 days','Blood Test'),('08-06-2020',10,1,NULL,'NA',NULL),('11-06-2020',10,1,NULL,'NA',NULL),('22-06-2020',11,1,'Adderall-1-0-1,Adderall-1-0-0,','NA','Blood Test,Liver Function Tests,MRI'),('23-06-2020',11,1,'N-undefined,A-undefined,','','Blood Test,Liver Function Tests,MRI'),('24-06-2020',11,1,'N-undefined,A-undefined,','','Blood Test'),('24-06-2020',11,2,'N-undefined,A-undefined,','','Blood Test'),('24-06-2020',11,3,'N-undefined,A-undefined,','','Blood Test'),('24-06-2020',9,1,'N-undefined,A-undefined,','','Liver Function Tests,Blood Test');
 /*!40000 ALTER TABLE `records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-10  2:42:43
+-- Dump completed on 2020-06-24 13:18:36

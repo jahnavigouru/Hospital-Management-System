@@ -34,7 +34,7 @@ CREATE TABLE `patient_info` (
   `p_addr` varchar(255) DEFAULT NULL,
   `p_emailid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `patient_info` (
 
 LOCK TABLES `patient_info` WRITE;
 /*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
-INSERT INTO `patient_info` VALUES (9,'08-06-2020','John Nash',21,'Male','15-06-1999','O+','9087654321','A Beautiful Mind','nash@gmail.com'),(10,'08-06-2020','Tiffiny Maxwell',20,'Female','13-06-2000','AB-','9876543210','Sliver Linning Palynook','maxwell@gmail.com');
+INSERT INTO `patient_info` VALUES (9,'08-06-2020','John Nash',21,'Male','15-06-1999','O+','9087654321','A Beautiful Mind','nash@gmail.com'),(10,'08-06-2020','Tiffiny Maxwell',20,'Female','13-06-2000','AB-','9876543210','Sliver Linning Palynook','maxwell@gmail.com'),(11,'22-06-2020','Broun Mars',20,'Male','09-02-2000','A+','9999999999','It Will Rain','mars@gmal.com');
 /*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-10  2:42:41
+-- Dump completed on 2020-06-24 13:18:35
