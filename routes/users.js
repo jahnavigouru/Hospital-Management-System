@@ -123,6 +123,13 @@ router.post('/login', (req, res, next) => {
             failureFlash: true
         })(req, res, next);
     }
+    if(email.includes('laboratory')) {
+        passport.authenticate('local', {
+            successRedirect: '/laboratory',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
   })
 
 //logout

@@ -8,20 +8,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/Pharmacy_dashboard">Home
+          <a class="nav-link" href="/Rep_dashboard">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pharmacy">Pharmacy Section</a>
+          <a class="nav-link" href="/patientinfo">Patient Registration</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="/outPatient">Out_patient</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Dropdown
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="/labfee">Lab Test</a>
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
@@ -46,21 +48,22 @@
   <br>
   <br>
   <div class="col-md-8 offset-2 border border-light p-5">
-      <div>
-          <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/hand-with-a-pill.png"/> Pharmacy</p>
-          <form action="/PharmacyID" method="POST">
+    <div>
+         <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Lab Fee </p>
+         <form action="/labfee" method="POST">
           <%- include('./partials/messages.ejs'); %>
-          <div class="md-form input-with-pre-icon ID">
-            <i class="fas fa-user input-prefix"></i>
-            <input type="text" id="prefixInside" class="form-control" name="PharmacyID" required>
-            <label for="prefixInside">Patient's ID</label>
-          </div>
           <div class="dates">
             <label><i class="fas fa-calendar"></i> Date Of Joining </label><br>
-            <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date"><br>
+            <input type="text" autocomplete="off" id="user1" class="form-control col-md-8" placeholder="Date" value="<%= datep %>" name="date"><br>
           </div>
-            <button class="btn purple-gradient" type="submit">Submit</button>
+          <div class="md-form input-with-pre-icon ID">
+            <i class="fas fa-user input-prefix"></i>
+            <input type="text" id="prefixInside" class="form-control col-md-8" name="pl_id" required>
+            <label for="prefixInside">Patient's ID</label>
+          </div>
+          <button class="btn purple-gradient" type="submit">Submit</button>
           </form>
           <%- include('./partials/record_entry.ejs'); %>
       </div>
   </div>
+  

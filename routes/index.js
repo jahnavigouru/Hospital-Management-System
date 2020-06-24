@@ -4,10 +4,17 @@ const { ensureAuthenticated } = require('../config/auth')
 
 //DB 
 const db = require('../app')
+const { route } = require('./users')
 
 //Welcome Page
 router.get('/', (req, res) => res.render('welcome'))
 
+const d = new Date();
+const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);    
+var dayy = `${da}-${mo}-${ye}`;
+  
 // Dashboard Page
 router.get('/Rep_dashboard',  ensureAuthenticated, (req, res) => {
     res.render('Rep_dashboard', {
@@ -79,7 +86,7 @@ router.post('/patientdetails', (req, res) => {
                     db.query(records, (err, rec) => {
                         if(err) throw err
                         //bill table
-                        let fees = `insert into bill set p_id = ${userID[0].p_id}, p_doa = "${date}", bill_type = "Registration-500, consultancy_fee-${consultancy_fee}"`
+                        let fees = `insert into bill set p_id = ${userID[0].p_id}, p_doa = "${date}", Registration = ${500}, consultancy_fee = ${consultancy_fee}`
                         db.query(fees, (err, paid) => {
                             if(err) throw err
                             let temp_success = []
@@ -141,7 +148,7 @@ router.post('/OutApp', (req, res) =>{
                 db.query(room, (err, found) => {
                     if(err) throw err
                     //fee payment
-                    let fee = `insert into bill set p_id = ${done[0].p_id}, p_doa = "${date}", bill_type = "consultancy_fee-${consultancy_fee}"`
+                    let fee = `insert into bill set p_id = ${done[0].p_id}, p_doa = "${date}", consultancy_fee = ${consultancy_fee}`
                     db.query(fee, (err, paid) => {
                         if(err) throw err
                         req.flash('room', `Your Appointment is registered, PatientID: ${done[0].p_id} please proceed to Room.no: ${found[0].room_no} and Doctor: Dr. ${found[0].name} `)
@@ -160,7 +167,7 @@ router.post('/OutApp', (req, res) =>{
             db.query(room, (err, found) => {
                 if(err) throw err
                 //fee payment
-                let fee = `insert into bill set p_id = ${uniqueid}, p_doa = "${date}", bill_type = "consultancy_fee-${consultancy_fee}"`
+                let fee = `insert into bill set p_id = ${uniqueid}, p_doa = "${date}", consultancy_fee=${consultancy_fee}`
                 db.query(fee, (err, paid) => {
                     if(err) throw err
                     req.flash('room', `Your Appointment is registered, please proceed to Room.no: ${found[0].room_no} and Doctor: Dr. ${found[0].name} `)
@@ -176,7 +183,8 @@ router.post('/OutApp', (req, res) =>{
 router.get('/Doc_dash', (req, res) => {
     res.render('Doc_dash', {
         name: req.user.name,
-        specialization: req.user.specialization
+        specialization: req.user.specialization,
+        datep: dayy
     })
 })
 
@@ -185,7 +193,7 @@ var date
 router.post('/P_queue', (req, res) => {
      date = req.body.date
     //List of Patient's
-    let queue = `select p_id, prescription from records where d_id = (select d_id from doctor where doc_id = ${req.user.id}) and doa = "${date}"`
+    let queue = `select p_id, prescription from records where doa = "${date}" and d_id = (select d_id from diseases where doc_id = ${req.user.id})`
     db.query(queue, (err, result) => {
         if(err) throw err
         let n = result.length
@@ -198,6 +206,8 @@ router.post('/P_queue', (req, res) => {
                  string = string +`p_id = ${result[i].p_id} or `
             }
             string = string + `p_id = ${result[n-1].p_id}`
+            console.log(string);
+            
             let final = `select p_name, p_age from patient_info where ${string}`
             let lists = []
             db.query(final, (err, list) => {
@@ -288,4 +298,79 @@ router.post('/PharmacyID', (req, res) => {
     })
 })
 
+//Lab fee
+router.get('/labfee', (req, res) => {
+    res.render('lab', {
+        datep: dayy
+    })
+})
+
+//lab fee post
+var pl_id, l_date;
+router.post('/labfee', (req, res) => {
+    pl_id = req.body.pl_id
+    l_date = req.body.date
+    //check bill paid
+    let check = `select Lab_fee,bill_id  from bill where p_id=${pl_id} and p_doa='${l_date}'`
+    db.query(check, (err, checked) => {
+        if(err) throw err
+        
+        if(checked.Lab_fee) {
+            req.flash('success_msg', `payment is already done with bill_id: ${checked[0].bill_id}`)
+            res.redirect('/labfee')
+        }else {
+            // test consulted
+            let tests = `select Labtests from records where p_id = ${pl_id} and doa = '${l_date}'`
+            db.query(tests, (err, lname) => {
+                if(err) throw err
+                if(lname.length == 0) {
+                    req.flash('id', 'Please Check information')
+                    res.redirect('/labfee')
+                }else{
+                    let lab = '', i, labname;
+                    let previousIndex = 0; 
+                    for (i = 0; i < lname[0].Labtests.length; i++) {
+                        if(lname[0].Labtests[i] == ',') {
+                            labname = lname[0].Labtests.slice(previousIndex, i)
+                            lab = lab + `select l_cost, l_name from Lab_tests where l_name = '${labname}';`
+                            previousIndex = i + 1;
+                        }
+                    }
+                    labname =  lname[0].Labtests.slice(previousIndex, i)
+                    lab = lab + `select l_cost, l_name from Lab_tests where l_name = '${labname}';`
+                    db.query(lab, (err, result) => {
+                        if(err) throw err
+                        let labs = []
+                        if(result.length == 1) {
+                            labs.push(result)
+                        }else{
+                            labs = result
+                        }
+                        req.flash('pl', labs)
+                        res.redirect('/labfee')
+                    })
+                }
+            })
+        }
+    }) 
+})
+
+//update lab bill 
+router.post('/labpay', (req, res) => {
+    const { fee } = req.body
+     //update lab bill
+     let labbill = `update bill set Lab_fee = '${fee}' where p_id=${pl_id} and p_doa='${l_date}'`
+     db.query(labbill, (err, paid) => {
+         if(err) throw err
+         req.flash('success_msg', 'paid')
+         res.redirect('/labfee')
+     })
+})
+   
+//labDashboard
+router.get('/laboratory', (req, res) => {
+    res.render('laboratory', {
+        UserType: req.user.UserType
+    })
+})
 module.exports = router

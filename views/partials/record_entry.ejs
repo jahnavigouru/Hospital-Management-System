@@ -194,7 +194,7 @@
         <div class="text-center"> 
         <p class="h4 mb-4">Patient's Info</p>
         </div>
-        <%for(var j = 0; j < prescription.length;j++){ %>
+        <% for(var j = 0; j < prescription.length;j++){ %>
           <!-- First name -->
           <label><i class="fas fa-user"></i> Patient Name </label>
           <input type="text" id="name" class="form-control mb-4" placeholder="<%= prescription[j].p_name %>" name="p_name" disabled/>
@@ -207,5 +207,30 @@
       </div>
     </div>
   </div>
+<%}%>
+
+<% if (typeof pl !== 'undefined' && pl.length > 0) {%>
+  <form action="/labpay" method="POST">  
+  <div class="row mt-5">
+    <div class="col-md-10 m-auto">
+      <div class="card card-body">
+        <div class="text-center"> 
+        <p class="h4 mb-4">Lab Fee</p>
+        </div>
+        <!-- Default checked -->
+        <% for(var i=0; i< pl.length; i++) { %>
+          <input name="fee" value="<%= pl[i][0].l_name %>: Rs. <%= pl[i][0].l_cost %>" type="checkbox" onclick="totalIt()" /> <%= pl[i][0].l_name %>: Rs. <%= pl[i][0].l_cost %>
+          <br>
+          <% } %>
+          <div class="md-form input-with-post-icon">
+            <i class="fas fa-user input-prefix"></i>
+            <input type="text" id="suffixInside" class="form-control" value="Rs. 0.00"  readonly="readonly" name="total">
+            <label for="suffixInside">Total Bill </label>
+        </div>
+        <button type="submit" class="btn blue-gradient">Payment</button>
+      </div>
+    </div>
+  </div>
+</form>
 <%}%>
     
