@@ -373,4 +373,10 @@ router.get('/laboratory', (req, res) => {
         UserType: req.user.UserType
     })
 })
+
+//Medical Tests
+router.get('/labtest', (req, res) => {
+    res.render('medical_tests')
+})
+
 module.exports = router

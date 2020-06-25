@@ -1,5 +1,5 @@
-  <!--Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+<!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
       aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,23 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/Rep_dashboard">Home
+          <a class="nav-link" href="/laboratory">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Patient Registration
-          </a>
-          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="/patientinfo">New Patient</a>
-            <a class="dropdown-item" href="/outPatient">Out Patient</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="/labtest">Medical Tests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/outPatient">Out_patient</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Payment
+            aria-haspopup="true" aria-expanded="false">Dropdown
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item" href="/labfee">Lab Test</a>
@@ -51,19 +47,4 @@
   <br>
   <br>
   <br>
-
-  <div class="col-md-8 offset-2 border border-light p-5">
-    <div>
-         <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Out-Patient Appoitment</p>
-         <form action="/outPatientID" method="POST">
-          <%- include('./partials/messages.ejs'); %>
-          <div class="md-form input-with-pre-icon ID row">
-            <i class="fas fa-user input-prefix"></i>
-            <input type="text" id="prefixInside" class="form-control col-md-8" name="Unique_id" required>
-            <label for="prefixInside">Patient's ID/Phone Number</label>
-            <button class="btn btn-primary btn-sm" type="submit" style="margin-left: 50px;">Submit</button>
-           </div>
-          </form>
-          <%- include('./partials/record_entry.ejs'); %>
-      </div>
-  </div>
+  
