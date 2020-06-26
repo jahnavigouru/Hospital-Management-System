@@ -50,6 +50,9 @@ app.use((req, res, next) => {
     res.locals.queue = req.flash('queue')
     res.locals.prescription = req.flash('prescription')
     res.locals.pl = req.flash('pl')
+    res.locals.InAllot = req.flash('InAllot')
+    res.locals.queuelab = req.flash('queuelab')
+    res.locals.array = req.flash('array')
     
     next()
 })

@@ -1,0 +1,127 @@
+<% if (typeof InAllot !== 'undefined' && InAllot.length > 0) {%>
+    <%for (var i = 0; i < InAllot.length; i++) { %>
+      <form action="/InRoom" method="POST">
+      <!-- First name -->
+        <label><i class="fas fa-user"></i> Patient ID </label>
+        <input type="text" id="id" class="form-control mb-4" placeholder="<%= InAllot[i].p_id %>" name="p_id" disabled/>
+    
+        <!-- First name -->
+        <label><i class="fas fa-user"></i> Name </label>
+        <input type="text" id="name" class="form-control mb-4" placeholder="<%= InAllot[i].p_name %>" name="name" disabled/>
+    
+        <!-- Age -->
+        <label><i class="fas fa-user"></i> Age </label>
+        <input type="text" id="age" class="form-control mb-4" placeholder="<%= InAllot[i].p_age %>" name="age" disabled/>
+        
+        <!-- Age -->
+        <label><i class="fas fa-user"></i> Gender </label>
+        <input type="text" id="gender" class="form-control mb-4" placeholder="<%= InAllot[i].p_gender %>" name="gender" disabled/>
+        
+        <!-- Age -->
+        <label><i class="fas fa-user"></i> BloodGroup </label>
+        
+        <input type="text" id="BloodGroup" class="form-control mb-4" placeholder="<%= InAllot[i].p_bloodgrp %>" name="BloodGroup" disabled/>
+        
+        <!-- DOA -->
+        <div class="dates">
+        <label><i class="fas fa-calendar"></i> Date Appointment </label><br>
+        <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date of Appointment" name="date" value="<%= date_ip %>" required><br>
+        </div>
+        <% if (typeof finals !== 'undefined' && finals.length > 0) {%>
+            
+        <label><i class="fas fa-hand-holding-usd"></i> Consultancy Fee </label><br>
+        <select class="browser-default custom-select mb-4" name="d_id" required>
+             <%for (var i = 0; i < finals[0].length; i++) { %>
+                <option value="<%= finals[0][i].d_id %>"> <%= finals[0][i].d_name %> </option>
+              <%}%>
+        </select>
+
+        <% let typefloor = [] %>
+        <% for(var i=0;i< finals[1].length-1; i++) {%>
+          <% if(finals[1][i].typefloor !== finals[1][i+1].typefloor) {%>
+            <% room_type.push(finals[1][i].typefloor)%>
+            <%}%>
+          <%}%>
+          <% typefloor.push(finals[1][finals[1].length-1].typefloor)%>
+      
+        <label><i class="fas fa-hand-holding-usd"></i> Room Type, floor </label><br>
+        <select class="browser-default custom-select mb-4" name="typefloor" required>
+             <%for (var i = 0; i < typefloor.length; i++) { %>
+                <option value="<%= typefloor[i] %>"> <%= typefloor[i] %> </option>
+              <%}%>
+        </select>
+
+        <label><i class="fas fa-hand-holding-usd"></i> Room : Bed </label><br>
+        <select class="browser-default custom-select mb-4" name="roombed" required>
+             <%for (var i = 0; i < finals[1].length; i++) { %>
+                <option value="<%= finals[1][i].room_no %>,<%= finals[1][i].bed_no %>"> Room_no <%= finals[1][i].room_no %> : Bed_no <%= finals[1][i].bed_no %> </option>
+              <%}%>
+        </select>
+
+        <% } %>
+          <br>
+        <button type="submit" class="btn blue-gradient">Proceed</button>
+      </form>
+    <%}%>
+    <%}%>
+
+
+  <% if (typeof queuelab !== 'undefined' && queuelab.length > 0) {%>  
+  <form method="POST">  
+      <table class="table">
+        <thead class="black white-text">
+          <tr>
+            <th scope="col">SNo</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient age</th>
+            <th scope="col">Patient Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%for (var i = 0; i < queuelab[0].length; i++) { %>
+            <tr>
+            <th scope="row"><%= queuelab[0][i].doa %></th>
+            <td><%= queuelab[1][i].p_name %></td>
+            <td><%= queuelab[1][i].p_age %></td>
+            <% if(!queuelab[0][i].Labreports){ %>
+              <td><button type="submit" class="btn btn-outline-danger waves-effect" formaction="/labrecentry" name="P_opdid" value="<%= queuelab[0][i].opd_id %>">In_Active</button></td>
+            <%}else{%>
+              <td>Active</td>
+            <%}%>
+          </tr>
+          <%}%>
+          
+        </tbody>
+      </table>
+      </form>
+  <%}%>
+  
+  <% if (typeof array !== 'undefined' && array.length > 0) {%>  
+    <div class="row mt-5">
+      <div class="col-md-10 m-auto">
+        <div class="card card-body">
+          <div class="text-center"> 
+          <p class="h4 mb-4">Record Entry</p>
+          </div>
+            <!-- First name -->
+            <label><i class="fas fa-user"></i> Patient ID </label>
+            <input type="text" id="name" class="form-control mb-4" placeholder="<%= array[0] %>" name="id" disabled/>
+
+            <div class="dates">
+              <label><i class="fas fa-calendar"></i> Date of record entry </label><br>
+              <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date" value="<%= array[1] %>"><br>
+             </div>
+
+            <% for (var i=2;i< array.length; i++) { %>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea2"><i class="fas fa-comment-medical"></i> Tests </label>
+                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"><%= array[i] %>: ......... </textarea>
+              </div>
+            <%} %>
+            
+          <button type="submit" class="btn blue-gradient">Save</button>
+        </div>
+      </div>
+    </div>
+    <%}%>
+    

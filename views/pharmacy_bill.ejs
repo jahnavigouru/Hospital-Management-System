@@ -52,14 +52,10 @@
           <%- include('./partials/messages.ejs'); %>
           <div class="md-form input-with-pre-icon ID">
             <i class="fas fa-user input-prefix"></i>
-            <input type="text" id="prefixInside" class="form-control" name="PharmacyID" required>
-            <label for="prefixInside">Patient's ID</label>
+            <input type="text" id="prefixInside" class="form-control" name="opd_id" required>
+            <label for="prefixInside">OPD ID</label>
           </div>
-          <div class="dates">
-            <label><i class="fas fa-calendar"></i> Date Of Joining </label><br>
-            <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date"><br>
-          </div>
-            <button class="btn purple-gradient" type="submit">Submit</button>
+          <button class="btn purple-gradient" type="submit">Submit</button>
           </form>
           <%- include('./partials/record_entry.ejs'); %>
       </div>

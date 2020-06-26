@@ -64,8 +64,14 @@
                 '</div>'+
                 '<div class="col-xs-7 col-sm-7 col-md-7">'+
                     '<div class="form-group">'+
+                    '<label><i class="fas fa-capsules"></i> morning-afternoon-dinner </label>'+
+                        '<input autocomplete="off" name="mad" type="text" placeholder="Type Item Quantity" class="form-control"/>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
                         '<label><i class="fas fa-capsules"></i>  Quantity </label>'+
-                        '<input name="quan" type="text" placeholder="Type Item Quantity" class="form-control"/>'+
+                        '<input name="quantity" type="number" placeholder="Type Item Quantity" class="form-control"/>'+
                     '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
                         '<a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>'+
                     '</div>'+
@@ -136,7 +142,58 @@
         document.getElementsByName("total")[0].value = "Rs. " + total.toFixed(2);
         }
     </script>
-      
+    <script>
+                $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button01').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row01">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-user-md"></i> Med Name </label>'+
+                        '<select class="browser-default custom-select mb-4" name="med_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            
+                            '<%for (var i = 0; i < prescription.length; i++) { %>'+
+                            '<option value="<%= prescription[i].m_name %>"> Med_name: <%=prescription[i].m_name%>, Med_quantity : <%=prescription[i].m_quantity%>, Med_price : <%=prescription[i].m_price%> </option>'+
+                            '<%}%>'+
+                            
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                    '<label><i class="fas fa-capsules"></i> Quantity </label>'+
+                        '<input autocomplete="off" name="quantity" type="text" placeholder=" Quantity" class="form-control"/>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-capsules"></i> Price </label>'+
+                        '<input name="price" type="text" placeholder="Price" class="form-control"/>'+
+                    '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button01 btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper01').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper01').on('click', '.list_remove_button01', function()
+            {
+                $(this).closest('div.row01').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+    </script>
 </head>
 <body>
 

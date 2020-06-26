@@ -58,19 +58,19 @@
             <%- include('./partials/messages.ejs'); %>
               <div class="dates">
                 <label><i class="fas fa-calendar"></i> Date Of Registration </label><br>
-                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date Of Registration" name="date"><br>
+                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date Of Registration" name="date" required><br>
               </div>
 
               <!-- First name -->
               <label><i class="fas fa-user"></i> Name </label><br>
-              <input type="text" id="name" class="form-control mb-4" placeholder="name" name="name" value="<%= typeof name != 'undefined' ? name : '' %>"/>
+              <input type="text" id="name" class="form-control mb-4" placeholder="name" name="name" value="<%= typeof name != 'undefined' ? name : '' %>" required/>
 
               <!-- Age -->
               <label><i class="fas fa-user"></i> Age </label><br>
-              <input type="text" id="age" class="form-control mb-4" placeholder="Age" name="age" value="<%= typeof age != 'undefined' ? age : '' %>"/>
+              <input type="text" id="age" class="form-control mb-4" placeholder="Age" name="age" value="<%= typeof age != 'undefined' ? age : '' %>" required/>
               
               <label><i class="fas fa-plus-square"></i> Blood group</label><br>
-              <select class="browser-default custom-select mb-4" name="BloodGrp">
+              <select class="browser-default custom-select mb-4" name="BloodGrp" required>
                 <option value="A+">A+</option>
                 <option value="O+">O+</option>
                 <option value="B+">B+</option>
@@ -82,7 +82,7 @@
               </select><br>
 
               <label><i class="fas fa-user"></i> Gender </label><br>
-              <select class="browser-default custom-select mb-4" name="gender">
+              <select class="browser-default custom-select mb-4" name="gender" required>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
                 <option value="Others">Others</option>
@@ -90,45 +90,32 @@
 
               <div class="dates">
                 <label><i class="fas fa-calendar"></i> DOB </label><br>
-                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="DOB" name="DOB"><br>
+                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="DOB" name="DOB" required><br>
               </div>
 
               <label><i class="fas fa-mobile"></i> Mobile Number </label><br>
-              <input type="text" id="phone" class="form-control mb-4" placeholder="Mobile Number" name="phone" value="<%= typeof phone != 'undefined' ? phone : '' %>"/>
+              <input type="text" id="phone" class="form-control mb-4" placeholder="Mobile Number" name="phone" value="<%= typeof phone != 'undefined' ? phone : '' %>" required/>
               
               <label><i class="fas fa-address-card"></i> Address </label><br>
-              <input type="text" id="address" class="form-control mb-4" placeholder="Address" name="address" value="<%= typeof address != 'undefined' ? address : '' %>"/>
-
-              <label><i class="fas fa-user"></i> Disease </label><br>
-              <select class="browser-default custom-select mb-4" name="d_id">
-                  <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
-                    <%for (var i = 0; i < diseases.length; i++) { %>
-                      <option value="<%= diseases[i].d_id %>"> <%= diseases[i].d_name %> </option>
-                    <%}%>
-                  <% } %>
-              </select><br>
+              <input type="text" id="address" class="form-control mb-4" placeholder="Address" name="address" value="<%= typeof address != 'undefined' ? address : '' %>" required/>
 
               <!-- E-mail -->
               <label><i class="fas fa-envelope"></i> E-mail </label><br>
-              <input type="text" id="email" class="form-control mb-4" placeholder="E-mail" name="email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+              <input type="text" id="email" class="form-control mb-4" placeholder="E-mail" name="email" value="<%= typeof email != 'undefined' ? email : '' %>"/>
               
                <!-- Default checked -->
                <div class="custom-control custom-checkbox">
-                <input name="fee" type="checkbox" class="custom-control-input" id="defaultChecked2" checked required>
+                <input name="fee" type="checkbox" class="custom-control-input" id="defaultChecked2" checked required disabled>
                 <label class="custom-control-label" for="defaultChecked2"><i class="fas fa-hand-holding-usd"> Registration fee: Rs. 500</i></label>
               </div>
               <br>
               
-               <label><i class="fas fa-hand-holding-usd"></i> Consultancy Fee </label><br>
-              <select class="browser-default custom-select mb-4" name="consultancy_fee">
-                  <% if (typeof diseases !== 'undefined' && diseases.length > 0) {%>
-                    <%for (var i = 0; i < diseases.length; i++) { %>
-                      <option value="<%= diseases[i].consultancy_fee %>"> <%= diseases[i].d_name %> : <%= diseases[i].consultancy_fee %> </option>
-                    <%}%>
-                  <% } %>
+              <label><i class="fas fa-hand-holding-usd"></i> Patient Status </label><br>
+              <select class="browser-default custom-select mb-4" name="patienttype" required>
+                <option value="Out-Patient">Out-Patient</option>
+                <option value="In-Patient">In-Patient</option>
               </select>
               <br>
-              
               <button class="btn blue-gradient" type="submit">Register</button>
           </div>
         </form>
