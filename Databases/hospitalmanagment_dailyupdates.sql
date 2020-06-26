@@ -16,36 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `patient_info`
+-- Table structure for table `dailyupdates`
 --
 
-DROP TABLE IF EXISTS `patient_info`;
+DROP TABLE IF EXISTS `dailyupdates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `patient_info` (
-  `p_id` int NOT NULL AUTO_INCREMENT,
-  `p_dor` varchar(255) DEFAULT NULL,
-  `p_name` varchar(255) DEFAULT NULL,
-  `p_age` int DEFAULT NULL,
-  `p_gender` varchar(255) DEFAULT NULL,
-  `p_dob` varchar(255) DEFAULT NULL,
-  `p_bloodgrp` varchar(255) DEFAULT NULL,
-  `p_phn` varchar(255) DEFAULT NULL,
-  `p_addr` varchar(255) DEFAULT NULL,
-  `p_emailid` varchar(255) DEFAULT NULL,
-  `Registration` int DEFAULT NULL,
-  PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `dailyupdates` (
+  `date` varchar(255) DEFAULT NULL,
+  `ipd_id` varchar(255) DEFAULT NULL,
+  `Meds` varchar(255) DEFAULT NULL,
+  `meds_cost` varchar(255) DEFAULT NULL,
+  `labtests` varchar(255) DEFAULT NULL,
+  `labs_cost` varchar(255) DEFAULT NULL,
+  `labreports` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `patient_info`
+-- Dumping data for table `dailyupdates`
 --
 
-LOCK TABLES `patient_info` WRITE;
-/*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
-INSERT INTO `patient_info` VALUES (16,'01-06-2020','Patient_1',30,'Female','12-06-1990','A+','8500457823','Home','furiosa@gmail.com',500);
-/*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
+LOCK TABLES `dailyupdates` WRITE;
+/*!40000 ALTER TABLE `dailyupdates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dailyupdates` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:28
+-- Dump completed on 2020-06-26 22:34:30

@@ -41,7 +41,6 @@ CREATE TABLE `in_patient_records` (
 
 LOCK TABLES `in_patient_records` WRITE;
 /*!40000 ALTER TABLE `in_patient_records` DISABLE KEYS */;
-INSERT INTO `in_patient_records` VALUES ('26-06-2020',14,'0FrGOX',1,'sharing',' G-1',1,1,'Active');
 /*!40000 ALTER TABLE `in_patient_records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 13:45:58
+-- Dump completed on 2020-06-26 22:34:28
