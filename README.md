@@ -1,7 +1,7 @@
 # Hospital-Management-System
 
 
-This project is made using Node js , Express , ejs , html , css and the database used is MySQL. So make sure you have these installed in your system.
+This project is made using Node js , Express , ejs , html , css , javascript , jquery and the database used is MySQL. So make sure you have these installed in your system.
 
 First download the zip file and extract it. Then you would need to import the databases to your MySQL workbench. The database are stored in the folder named Databases.
 
