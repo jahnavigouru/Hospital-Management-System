@@ -8,19 +8,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/laboratory">Home
+          <a class="nav-link" href="/ipd_dash">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/labtest">Medical Tests</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/labrecordin">In-Patient</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Patient Registration
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/medsin">Meds Entry</a>
+            <a class="dropdown-item" href="/inlabentry">In-Patient Lab entry</a>
+            <a class="dropdown-item" href="/inPatient">In-Patient</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Dropdown
+            aria-haspopup="true" aria-expanded="false">Payment
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item" href="/labfee">Lab Test</a>
@@ -47,30 +51,22 @@
   <br>
   <br>
   <br>
-  <div class="container-fluid">
-    <!-- Card -->
-  <div class="card">
-    <%- include('./partials/messages.ejs'); %>
-    <!-- Card content -->
-    <div class="card-body text-center col-14">
-  
-      <!-- Title -->
-      <h4 class="card-title"><%= UserType %></h4>
-      <br>
-      <br>
-      <div class="dates">
-        <form action="/laboratory" method="POST">
-        <label><i class="fas fa-calendar"></i> Date </label><br>
-        <input type="text" autocomplete="off" id="user1" class="form-control " placeholder="<%= datep %>" value="<%= datep %>" name="date"><br>
-        <button type="submit" class="btn blue-gradient"><i class="fas fa-th-list pr-2" aria-hidden="true"></i>Submit</button>
-        </form>
+  <div class="col-md-8 offset-2 border border-light p-5">
+    <div>
+         <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Lab Entry</p>
+         <form action="/labsin" method="POST">
+          <%- include('./partials/messages.ejs'); %>
+          <div class="md-form input-with-pre-icon">
+            <i class="fas fa-user input-prefix"></i>
+            <input type="text" id="prefixInside" class="form-control" name="ipd_id" required>
+            <label for="prefixInside">Patient's ID</label>
+            </div>
+            <div class="dates">
+                <label><i class="fas fa-calendar"></i> Date </label><br>
+                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date" value="<%= datelabs %>"><br>
+            </div>
+            <button type="submit" class="btn blue-gradient">Submit</button>
+          </form>
+          <%- include('./partials/inPRecord.ejs'); %>
       </div>
-      <br>
-      <%- include('./partials/inPRecord.ejs'); %>
-    </div>
-  
   </div>
-  <!-- Card -->
-  
-  </div>
-  

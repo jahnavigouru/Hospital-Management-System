@@ -8,22 +8,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/Pharmacy_dashboard">Home
+        <a class="nav-link" href="/ipd_dash">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/pharmacy">Out-Patient Section</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/inPharmacy">In-Patient Section</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Patient Registration
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/medsin">Meds Entry</a>
+          <a class="dropdown-item" href="/inlabentry">In-Patient Lab entry</a>
+          <a class="dropdown-item" href="/inPatient">In-Patient</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Dropdown
+          aria-haspopup="true" aria-expanded="false">Payment
         </a>
         <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="/labfee">Lab Test</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -47,19 +51,22 @@
 <br>
 <br>
 <br>
-
   <div class="col-md-8 offset-2 border border-light p-5">
-      <div>
-          <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/hand-with-a-pill.png"/> Pharmacy</p>
-          <form action="/PharmacyID" method="POST">
+    <div>
+         <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/user-male--v1.png"/> Meds Entry</p>
+         <form action="/medsin" method="POST">
           <%- include('./partials/messages.ejs'); %>
-          <div class="md-form input-with-pre-icon ID">
+          <div class="md-form input-with-pre-icon">
             <i class="fas fa-user input-prefix"></i>
-            <input type="text" id="prefixInside" class="form-control" name="opd_id" required>
-            <label for="prefixInside">OPD ID</label>
-          </div>
-          <button class="btn purple-gradient" type="submit">Submit</button>
+            <input type="text" id="prefixInside" class="form-control" name="ipd_id" required>
+            <label for="prefixInside">Patient's ID</label>
+            </div>
+            <div class="dates">
+                <label><i class="fas fa-calendar"></i> Date </label><br>
+                <input type="text" autocomplete="off" id="user1" class="form-control" placeholder="Date" name="date" value="<%= datemeds %>"><br>
+            </div>
+            <button type="submit" class="btn blue-gradient">Submit</button>
           </form>
-          <%- include('./partials/record_entry.ejs'); %>
+          <%- include('./partials/inPRecord.ejs'); %>
       </div>
   </div>

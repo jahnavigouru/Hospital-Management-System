@@ -54,7 +54,7 @@
 
     <!-- Card content -->
     <div class="card-body text-center col-14">
-
+      <%- include('./partials/messages.ejs'); %>
         <!-- Title -->
         <h4 class="card-title">Patients</h4>
         <br>
@@ -89,9 +89,7 @@
       </p>
     </div>
     <div class="tab-pane fade" id="follow-classic-shadow" role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-        quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+      <p><%- include('./partials/inPRecord.ejs'); %></p>
     </div>
     <div class="tab-pane fade" id="contact-classic-shadow" role="tabpanel" aria-labelledby="contact-tab-classic-shadow">
       <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum

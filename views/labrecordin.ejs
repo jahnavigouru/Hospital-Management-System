@@ -50,16 +50,16 @@
   <div class="container-fluid">
     <!-- Card -->
   <div class="card">
-    <%- include('./partials/messages.ejs'); %>
+  
     <!-- Card content -->
     <div class="card-body text-center col-14">
   
       <!-- Title -->
-      <h4 class="card-title"><%= UserType %></h4>
+      <h4 class="card-title">In-Patient Record entry</h4>
       <br>
       <br>
       <div class="dates">
-        <form action="/laboratory" method="POST">
+        <form action="/labrecordin" method="POST">
         <label><i class="fas fa-calendar"></i> Date </label><br>
         <input type="text" autocomplete="off" id="user1" class="form-control " placeholder="<%= datep %>" value="<%= datep %>" name="date"><br>
         <button type="submit" class="btn blue-gradient"><i class="fas fa-th-list pr-2" aria-hidden="true"></i>Submit</button>

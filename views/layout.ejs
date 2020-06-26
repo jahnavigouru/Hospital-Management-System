@@ -194,6 +194,52 @@
             });
         });
     </script>
+    <script>
+                $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button00').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row00">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-user-md"></i> Med Name </label>'+
+                        '<select class="browser-default custom-select mb-4" name="med_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            '<% if (typeof meds !== "'+undefined+'" && meds.length > 0) {%>'+
+                            '<%for (var i = 0; i < meds[0].length; i++) { %>'+
+                            '<option value="<%= meds[0][i].m_name %>"> <%= meds[0][i].m_name %> </option>'+
+                            '<%}%>'+
+                            '<%}%>'+
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-capsules"></i>  Quantity </label>'+
+                        '<input name="quantity" type="number" placeholder="Type Item Quantity" class="form-control"/>'+
+                    '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button00 btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper00').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper00').on('click', '.list_remove_button', function()
+        {
+        $(this).closest('div.row00').remove(); //Remove field html
+        x--; //Decrement field counter
+        });
+        });
+    </script>
 </head>
 <body>
 

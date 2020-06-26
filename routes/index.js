@@ -227,6 +227,74 @@ router.post('/InRoom', (req, res) => {
     })
 })
 
+//IPD Section
+router.get('/ipd_dash', (req, res) => {
+    res.render('ipd_dash', {
+        UserType: req.user.UserType
+    })
+})
+
+//Meds update inPatient
+router.get('/medsin', (req, res) => {
+    res.render('medsInpatient', {
+        datemeds: dayy
+    })
+})
+
+//Meds update inPatient Handle
+var ipd_med, date
+router.post('/medsin', (req, res) => {
+    ipd_med = req.body.ipd_id 
+    date = req.body.date
+    let med = 'select m_name from medicines'
+    db.query(med, (err, medss) => {
+        if(err) throw err
+        //patient info
+        let pat = `select p_name, p_age from patient_info where patient_info.p_id = (select p_id from in_Patient_records where ipd_id = '${ipd_med}')`
+        let meds = []
+        db.query(pat, (err, google) => {
+            if(err) throw err
+            if(google.length == 0) {
+                req.flash('id', 'Please check your information')
+                res.redirect('/medsin')
+            } else {
+                //check data 
+                let data = `select Meds from dailyUpdates where ipd_id = '${ipd_med}' and date = '${date}'`
+                db.query(data, (err, dot) => {
+                    if(err) throw err
+                    if(dot.length > 0) {
+                        req.flash('id', 'Data is Already updated')
+                        res.redirect('/medsin')
+                    } else {
+                        meds.push(medss)
+                        meds.push(google)
+                        req.flash('meds', meds)
+                        res.redirect('/medsin')
+                    }
+                })
+            }
+        })
+    })
+})
+
+//Enter in bill
+router.post('/submitentry', (req, res) => {
+    var n = req.body.med_name.length
+    let string = ""
+    for (let i = 0; i < n-1; i++) {
+        string = string + req.body.med_name[i] + '-' + req.body.quantity[i] + ','
+    }
+    string = string + req.body.med_name[n-1] + '-' + req.body.quantity[n-1]
+    //Update
+    let sql = `insert into dailyUpdates set date = '${date}', ipd_id = '${ipd_med}', Meds = '${string}'`
+    db.query(sql, (err, updated) => {
+        if(err) throw err
+        req.flash('success_msg', 'saved!')
+        res.redirect('/medsin')
+    }) 
+})
+
+
 // Doctor dashboard
 router.get('/Doc_dash', (req, res) => {
     res.render('Doc_dash', {
@@ -286,8 +354,6 @@ router.post('/PatientID', (req, res) => {
     })
 })
 
-
-
 //Doctor record Entry 
 router.get('/record', (req, res) => {
     res.render('Doc_record', {
@@ -309,8 +375,7 @@ router.post('/DocRecEntry', (req, res) => {
         if(err) throw err
         req.flash('record_entry', 'Entry Done')
         res.redirect('/Doc_dash')
-    })
-    
+    }) 
 })
 
 //Pharmacist 
@@ -329,6 +394,53 @@ router.get('/pharmacy', (req, res) => {
             list: meds
         })
     })
+})
+
+//Inpatient Pharmacy
+router.get('/inPharmacy', (req, res) => {
+    res.render('inPatient_Pharmacy')
+})
+
+//Inpatient Pharmacy Handle 
+var IPD
+router.post('/inPharmacyID', (req, res) => {
+    IPD = req.body.ipd_id
+    //retrive details
+    let details = `select date doa, Meds meds, meds_cost, m_name, m_price, m_quantity from dailyUpdates, medicines where ipd_id = '${IPD}'`
+    db.query(details, (err, detail) => {
+        if(err) throw err
+        if(detail.length == 0) {
+            req.flash('id', 'Please Check information')
+            res.redirect('/inPharmacy')
+        } else {
+            if(detail[0].meds_cost) {
+                req.flash('success_msg', `payment is already done`)
+                res.redirect('/inPharmacy')
+            } else {
+                req.flash('prescription', detail)
+                res.redirect('/inPharmacy')
+            }
+        }
+    })
+})
+
+//Update of in_pahrmacy bill
+router.post('/InpatienPaymentp', (req, res) => {
+    var meds = "", totalprice = 0
+    var n = req.body.med_name.length
+    for(let i=0;i<n;i++){
+        meds = meds + req.body.med_name[i] + '-' + req.body.quantity[i] + '-' + req.body.price[i] + ', '
+        
+        totalprice = totalprice + Number(req.body.price[i])
+    }
+    meds = meds + 'Total Price : Rs.' + totalprice
+    //add
+    let inbill = `update dailyUpdates set meds_cost = '${meds}' where ipd_id = '${IPD}' and date = '${req.body.DOA}'`
+    db.query(inbill, (err, pay) => {
+        if(err) throw err
+        req.flash('success_msg', 'paid')
+        res.redirect('/inPharmacy')
+    })   
 })
 
 //Pharmacy_PatientID
@@ -383,6 +495,126 @@ router.get('/labfee', (req, res) => {
     res.render('lab', {
         datep: dayy
     })
+})
+
+//In Patient Lab Entry
+router.get('/inlabentry', (req, res) => {
+    res.render('inlabentry', {
+        datelabs: dayy
+    })
+})
+
+//Enter Lab records
+var ipd_lab, ldate
+router.post('/labsin', (req, res) => {
+    ipd_lab = req.body.ipd_id
+    ldate = req.body.date
+    let med = 'select l_name from lab_tests'
+    db.query(med, (err, medss) => {
+        if(err) throw err
+        //patient info
+        let pat = `select p_name, p_age from patient_info where patient_info.p_id = (select p_id from in_Patient_records where ipd_id = '${ipd_lab}')`
+        let meds = []
+        db.query(pat, (err, google) => {
+            if(err) throw err
+            if(google.length == 0) {
+                req.flash('id', 'Please check your information')
+                res.redirect('/inlabentry')
+            } else {
+                //check data 
+                let data = `select labtests from dailyUpdates where ipd_id = '${ipd_lab}' and date = '${ldate}'`
+                db.query(data, (err, dot) => {
+                    if(err) throw err
+                    if(dot[0].labtests) {
+                        req.flash('id', 'Data is Already updated')
+                        res.redirect('/inlabentry')
+                    } else {
+                        meds.push(google)
+                        meds.push(medss)
+                        req.flash('info', meds)
+                        res.redirect('/inlabentry')
+                    }
+                })
+            }
+        })
+    })
+})
+
+//Lab record entry 
+router.post('/Inpatienlab', (req, res) => {
+    const { lab_name } = req.body
+    //update record
+    let update = `update dailyUpdates set labtests = '${lab_name}' where date = '${ldate}' and ipd_id = '${ipd_lab}'`
+    db.query(update, (err, up) => {
+        if(err) throw err
+        req.flash('success_msg', 'saved!')
+        res.redirect('/inlabentry')
+    })
+})
+
+//in patient lab fee post
+router.get('/inlabfee', (req, res) => {
+    res.render('inlabfee')
+})
+
+//inpatient lab fee details
+var IPD_lab, Date_lab
+router.post('/inlabfee', (req, res) => {
+    IPD_lab = req.body.ipd_id
+    Date_lab = req.body.date
+    //check bill paid
+    let check = `select labs_cost from dailyUpdates where ipd_id = '${IPD_lab}' and date = '${Date_lab}'`
+    db.query(check, (err, checked) => {
+        if(err) throw err
+        if(checked.length == 0) {
+            req.flash('id', 'Please Check information')
+            res.redirect('/inlabfee')
+        }else{
+        if(checked[0].labs_cost) {
+            req.flash('success_msg', `payment is already done`)
+            res.redirect('/inlabfee')
+        }else {
+            // test consulted
+            let tests = `select labtests from dailyUpdates where ipd_id = '${IPD_lab}' and date = '${Date_lab}'`
+            db.query(tests, (err, lname) => {
+                if(err) throw err
+                if(lname.length == 0) {
+                    req.flash('id', 'Please Check information')
+                    res.redirect('/inlabfee')
+                }else{
+                    var name = lname[0].labtests.split(',')
+                    var lab = ''
+                    for (let i = 0; i < name.length; i++) {
+                        lab = lab + `select l_cost, l_name from Lab_tests where l_name = '${name[i]}';`
+                    }
+                    db.query(lab, (err, result) => {
+                        if(err) throw err
+                        let labs = []
+                        if(result.length == 1) {
+                            labs.push(result)
+                        }else{
+                            labs = result
+                        }
+                        req.flash('pl', labs)
+                        res.redirect('/inlabfee')
+                    })
+                }
+            })
+        }
+      }
+    }) 
+})
+
+//inlab fee pay
+router.post('/inlabpay', (req, res) => {
+    const { fee, total } = req.body
+     //update lab bill
+     let labbill = `update dailyUpdates set labs_cost = '${fee}, Total Cost : ${total}' where ipd_id = '${IPD_lab}' and date = '${Date_lab}'`
+     db.query(labbill, (err, paid) => {
+         if(err) throw err
+         req.flash('success_msg', 'paid')
+         res.redirect('/inlabfee')
+     })
 })
 
 //lab fee post
@@ -481,7 +713,6 @@ router.post('/laboratory', (req, res) => {
                 if(err) throw err
                 lists.push(results)
                 lists.push(list)
-                console.log(lists);
                 req.flash('queuelab', lists)
                 res.redirect('/laboratory')
             })
@@ -490,10 +721,11 @@ router.post('/laboratory', (req, res) => {
 })
 
 //Test entry
+var labID
 router.post('/labrecentry', (req, res) => {
-    const { P_opdid } = req.body
+    labID = req.body.P_opdid
     //select no.of records 
-    let rec = `select opd_id, doa, LabTests from records where opd_id = '${P_opdid}'`
+    let rec = `select opd_id, doa, LabTests from records where opd_id = '${labID}'`
     db.query(rec, (err, recs) => {
         if(err) throw err
         var tests = recs[0].LabTests.split(",")
@@ -513,5 +745,76 @@ router.get('/labtest', (req, res) => {
     res.render('medical_tests')
 })
 
+//Update records (Lab reports)
+router.post('/update', (req, res) => {
+    const { date, tests } = req.body
+    var report = ""
+    report = report + date + ' _____ ' + tests
+    let reports = `update records set Labreports = '${report}' where opd_id = '${labID}'`
+    db.query(reports, (err, done) => {
+        if(err) throw err
+        req.flash('success_msg', 'Saved')
+        res.redirect('/labtest')
+    })
+})
+
+//in patient lab record entry get
+router.get('/labrecordin', (req, res) => {
+    res.render('labrecordin', {
+        datep: dayy
+    })
+})
+
+//lab Date
+var datee
+router.post('/labrecordin', (req, res) => {
+    datee = req.body.date
+    //get lab id's
+    let info = `select ipd_id, date, labs_cost, labreports from dailyUpdates where date = '${datee}'`
+    db.query(info, (err, results) => {
+        if(err) throw err
+        var n = results.length
+        if(n == 0) {
+            req.flash('id', 'No appoints')
+            res.redirect('/labrecordin')
+        } else {
+            req.flash('inlabs', results)
+            res.redirect('/labrecordin')   
+        }
+    })
+})
+
+// in Test entry
+var inlabID
+router.post('/inlabrecentry', (req, res) => {
+    inlabID = req.body.P_opdid
+    //select no.of records 
+    let rec = `select ipd_id, labtests, date from dailyUpdates where ipd_id = '${inlabID}' and date = '${datee}'`
+    db.query(rec, (err, recs) => {
+        if(err) throw err
+        var tests = recs[0].labtests.split(",")
+        let array = []
+        array.push(recs[0].ipd_id)
+        array.push(recs[0].date)
+        for(var i=0;i<tests.length;i++) {
+            array.push(tests[i])
+        }
+        req.flash('array1', array)
+        res.redirect('/labtest')
+    })
+})
+
+//inUpdate records (Lab reports)
+router.post('/inupdate', (req, res) => {
+    const { date, tests } = req.body
+    var report = ""
+    report = report + date + ' _____ ' + tests
+    let reports = `update dailyUpdates set labreports = '${report}' where ipd_id = '${inlabID}' and date = '${datee}'`
+    db.query(reports, (err, done) => {
+        if(err) throw err
+        req.flash('success_msg', 'Saved')
+        res.redirect('/labtest')
+    })
+})
 
 module.exports = router
