@@ -54,7 +54,9 @@ app.use((req, res, next) => {
     res.locals.InAllot = req.flash('InAllot')
     res.locals.queuelab = req.flash('queuelab')
     res.locals.array = req.flash('array')
-    
+    res.locals.meds = req.flash('meds')
+    res.locals.inlabs = req.flash('inlabs')
+    res.locals.array1 = req.flash('array1')
     next()
 })
 
@@ -62,8 +64,8 @@ app.use((req, res, next) => {
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'hospital_management',
+    password: 'root',
+    database: 'HospitalManagment',
     multipleStatements: true
 })
 

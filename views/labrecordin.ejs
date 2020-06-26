@@ -1,7 +1,7 @@
-<body background="images/pharmacy.jpg" alt="BGC" style="height: 100%; background-repeat: no-repeat; background-size: cover; ">
+<body background="images/lab3.jpg" alt="BGC" style="height: 100%; background-repeat: no-repeat; background-size: cover; ">
   <!--Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
-      <a class="navbar-brand" href="/Pharmacy_dashboard">HMS</a>
+      <a class="navbar-brand" href="/laboratory">HMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,15 +9,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/Pharmacy_dashboard">Home
+            <a class="nav-link" href="/laboratory">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/pharmacy">Out-Patient Section</a>
+            <a class="nav-link" href="/labtest">Medical Tests</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/inPharmacy">In-Patient Section</a>
+            <a class="nav-link" href="/labrecordin">In-Patient</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -38,19 +38,30 @@
     <br>
     <br>
     <br>
-  <div class="col-md-8 offset-2 border border-light p-5" style="margin-top: 150px; background-color:rgb(0,0,0,0.5); color: white; border-radius: 1em;">
-      <div>
-          <p class="h4 mb-4"><img src="https://img.icons8.com/nolan/64/hand-with-a-pill.png"/> Pharmacy</p>
-          <form action="/PharmacyID" method="POST">
-          <%- include('./partials/messages.ejs'); %>
-          <div class="md-form input-with-pre-icon ID">
-            <i class="fas fa-user input-prefix"></i>
-            <input type="text" id="prefixInside" style="color: white;" class="form-control" name="opd_id" required>
-            <label for="prefixInside" style="color: white;">OPD ID</label>
-          </div>
-          <button class="btn purple-gradient" type="submit">Submit</button>
-          </form>
-          <%- include('./partials/record_entry.ejs'); %>
+  <div class="container-fluid">
+    <!-- Card -->
+  <div class="card">
+  
+    <!-- Card content -->
+    <div class="card-body text-center col-14">
+  
+      <!-- Title -->
+      <h4 class="card-title">In-Patient Record entry</h4>
+      <br>
+      <br>
+      <div class="dates">
+        <form action="/labrecordin" method="POST">
+        <label><i class="fas fa-calendar"></i> Date </label><br>
+        <input type="text" autocomplete="off" id="user1" class="form-control " placeholder="<%= datep %>" value="<%= datep %>" name="date"><br>
+        <button type="submit" class="btn blue-gradient"><i class="fas fa-th-list pr-2" aria-hidden="true"></i>Submit</button>
+        </form>
       </div>
+      <br>
+      <%- include('./partials/inPRecord.ejs'); %>
+    </div>
+  
   </div>
-</body>
+  <!-- Card -->
+  
+  </div>
+  

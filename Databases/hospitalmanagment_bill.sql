@@ -29,9 +29,8 @@ CREATE TABLE `bill` (
   `consultancy_fee` int DEFAULT NULL,
   `pharmacy_fee` varchar(255) DEFAULT NULL,
   `Lab_fee` varchar(255) DEFAULT NULL,
-  `total_cost` int DEFAULT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +39,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (17,'RMFU','25-06-2020',200,NULL,'Blood Test: Rs. 100,MRI: Rs. 100, Total Cost : Rs. 200.00',NULL),(18,'j1gv','25-06-2020',200,'NULL',NULL,NULL),(19,'yBWF','26-06-2020',200,NULL,'Blood Test: Rs. 100,Liver Function Tests: Rs. 100',NULL),(20,'WTnY','26-06-2020',200,'Dolo 650-10-100, Adderall-5-50, Total Price : Rs.150','Blood Test: Rs. 100, Total Cost : Rs. 100.00',NULL);
+INSERT INTO `bill` VALUES (21,'yHs3','01-06-2020',200,NULL,NULL);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 13:45:58
+-- Dump completed on 2020-06-26 22:34:29

@@ -130,6 +130,13 @@ router.post('/login', (req, res, next) => {
             failureFlash: true
         })(req, res, next);
     }
+    if(email.includes('IPD')) {
+        passport.authenticate('local', {
+            successRedirect: '/ipd_dash',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
   })
 
 //logout

@@ -1,98 +1,50 @@
 <body background="images/lab3.jpg" alt="BGC" style="height: 100%; background-repeat: no-repeat; background-size: cover; ">
-<!--Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/laboratory">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/labtest">Medical Tests</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/outPatient">Out_patient</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Dropdown
-          </a>
-          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="/labfee">Lab Test</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-default"
-            aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="/users/logout">Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!--/.Navbar -->
-  <br>
-  <br>
-  <br>
-  
-  <div class="container-fluid">
-    <!-- Card -->
-    <div class="card" style="margin-top: 150px; background-color:rgb(0,0,0,0.5); border-radius: 1em;">
-
-    <!-- Card content -->
-    <div class="card-body text-center col-14">
-
-        <!-- Title -->
-        <h4 class="card-title" style="color: white;">Patients</h4>
-        <br>
-        <br>
-    </div>
-
-    <!-- Classic tabs -->
-<div class="classic-tabs mx-2">
-
-  <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link  waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow"
-        role="tab" aria-controls="profile-classic-shadow" aria-selected="true">Profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link waves-light" id="follow-tab-classic-shadow" data-toggle="tab" href="#follow-classic-shadow"
-        role="tab" aria-controls="follow-classic-shadow" aria-selected="false">Follow</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link waves-light" id="contact-tab-classic-shadow" data-toggle="tab" href="#contact-classic-shadow"
-        role="tab" aria-controls="contact-classic-shadow" aria-selected="false">Contact</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link waves-light" id="awesome-tab-classic-shadow" data-toggle="tab" href="#awesome-classic-shadow"
-        role="tab" aria-controls="awesome-classic-shadow" aria-selected="false">Be awesome</a>
-    </li>
-  </ul>
-
+  <!--Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+      <a class="navbar-brand" href="/laboratory">HMS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/laboratory">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/labtest">Medical Tests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/labrecordin">In-Patient</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="/users/logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+    <br>
+    <br>
+    <br>
   <div class="tab-content card" id="myClassicTabContentShadow">
     <div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
       <p><%- include('./partials/inPRecord.ejs'); %>
       </p>
     </div>
     <div class="tab-pane fade" id="follow-classic-shadow" role="tabpanel" aria-labelledby="follow-tab-classic-shadow">
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-        quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+      <p><%- include('./partials/inPRecord.ejs'); %></p>
     </div>
     <div class="tab-pane fade" id="contact-classic-shadow" role="tabpanel" aria-labelledby="contact-tab-classic-shadow">
       <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
