@@ -16,33 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `medicines`
+-- Table structure for table `room`
 --
 
-DROP TABLE IF EXISTS `medicines`;
+DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicines` (
-  `m_id` int NOT NULL,
-  `m_name` varchar(100) DEFAULT NULL,
-  `m_stock` int DEFAULT NULL,
-  `m_price` varchar(10) DEFAULT NULL,
-  `m_quantity` varchar(255) DEFAULT NULL,
-  `m_mfg` varchar(255) DEFAULT NULL,
-  `m_exp` varchar(255) DEFAULT NULL,
-  `m_desc` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`m_id`)
+CREATE TABLE `room` (
+  `room_type` varchar(255) DEFAULT NULL,
+  `floor` varchar(255) NOT NULL,
+  `no_rooms` int DEFAULT NULL,
+  PRIMARY KEY (`floor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `medicines`
+-- Dumping data for table `room`
 --
 
-LOCK TABLES `medicines` WRITE;
-/*!40000 ALTER TABLE `medicines` DISABLE KEYS */;
-INSERT INTO `medicines` VALUES (1,'Dolo 650',NULL,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(2,'Adderall',NULL,NULL,NULL,NULL,NULL,NULL),(3,'Ventolin',NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `medicines` ENABLE KEYS */;
+LOCK TABLES `room` WRITE;
+/*!40000 ALTER TABLE `room` DISABLE KEYS */;
+INSERT INTO `room` VALUES ('sharing','G-1',20),('sharing','G-2',20);
+/*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 13:45:58
+-- Dump completed on 2020-06-26 13:45:59

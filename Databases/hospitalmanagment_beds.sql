@@ -16,33 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `medicines`
+-- Table structure for table `beds`
 --
 
-DROP TABLE IF EXISTS `medicines`;
+DROP TABLE IF EXISTS `beds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicines` (
-  `m_id` int NOT NULL,
-  `m_name` varchar(100) DEFAULT NULL,
-  `m_stock` int DEFAULT NULL,
-  `m_price` varchar(10) DEFAULT NULL,
-  `m_quantity` varchar(255) DEFAULT NULL,
-  `m_mfg` varchar(255) DEFAULT NULL,
-  `m_exp` varchar(255) DEFAULT NULL,
-  `m_desc` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`m_id`)
+CREATE TABLE `beds` (
+  `room_no` int DEFAULT NULL,
+  `floor` varchar(255) DEFAULT NULL,
+  `bed_no` int DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  KEY `floor` (`floor`),
+  CONSTRAINT `beds_ibfk_1` FOREIGN KEY (`floor`) REFERENCES `room` (`floor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `medicines`
+-- Dumping data for table `beds`
 --
 
-LOCK TABLES `medicines` WRITE;
-/*!40000 ALTER TABLE `medicines` DISABLE KEYS */;
-INSERT INTO `medicines` VALUES (1,'Dolo 650',NULL,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(2,'Adderall',NULL,NULL,NULL,NULL,NULL,NULL),(3,'Ventolin',NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `medicines` ENABLE KEYS */;
+LOCK TABLES `beds` WRITE;
+/*!40000 ALTER TABLE `beds` DISABLE KEYS */;
+INSERT INTO `beds` VALUES (1,'G-1',1,'Active'),(1,'G-1',2,'Inactive'),(2,'G-1',1,'Inactive'),(2,'G-1',2,'Inactive');
+/*!40000 ALTER TABLE `beds` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 13:45:58
+-- Dump completed on 2020-06-26 13:45:59

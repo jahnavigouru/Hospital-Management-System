@@ -16,33 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `medicines`
+-- Table structure for table `in_patient_records`
 --
 
-DROP TABLE IF EXISTS `medicines`;
+DROP TABLE IF EXISTS `in_patient_records`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicines` (
-  `m_id` int NOT NULL,
-  `m_name` varchar(100) DEFAULT NULL,
-  `m_stock` int DEFAULT NULL,
-  `m_price` varchar(10) DEFAULT NULL,
-  `m_quantity` varchar(255) DEFAULT NULL,
-  `m_mfg` varchar(255) DEFAULT NULL,
-  `m_exp` varchar(255) DEFAULT NULL,
-  `m_desc` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`m_id`)
+CREATE TABLE `in_patient_records` (
+  `doc` varchar(255) DEFAULT NULL,
+  `p_id` int DEFAULT NULL,
+  `ipd_id` varchar(255) DEFAULT NULL,
+  `d_id` int DEFAULT NULL,
+  `room_type` varchar(255) DEFAULT NULL,
+  `floor` varchar(255) DEFAULT NULL,
+  `room_no` int DEFAULT NULL,
+  `bed_no` int DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `medicines`
+-- Dumping data for table `in_patient_records`
 --
 
-LOCK TABLES `medicines` WRITE;
-/*!40000 ALTER TABLE `medicines` DISABLE KEYS */;
-INSERT INTO `medicines` VALUES (1,'Dolo 650',NULL,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(2,'Adderall',NULL,NULL,NULL,NULL,NULL,NULL),(3,'Ventolin',NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `medicines` ENABLE KEYS */;
+LOCK TABLES `in_patient_records` WRITE;
+/*!40000 ALTER TABLE `in_patient_records` DISABLE KEYS */;
+INSERT INTO `in_patient_records` VALUES ('26-06-2020',14,'0FrGOX',1,'sharing',' G-1',1,1,'Active');
+/*!40000 ALTER TABLE `in_patient_records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

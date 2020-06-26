@@ -96,7 +96,8 @@
       </form>
   <%}%>
   
-  <% if (typeof array !== 'undefined' && array.length > 0) {%>  
+  <% if (typeof array !== 'undefined' && array.length > 0) {%> 
+    <form action="/update" method="POST"> 
     <div class="row mt-5">
       <div class="col-md-10 m-auto">
         <div class="card card-body">
@@ -123,5 +124,6 @@
         </div>
       </div>
     </div>
+  </form>
     <%}%>
     
