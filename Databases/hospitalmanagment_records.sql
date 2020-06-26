@@ -44,7 +44,7 @@ CREATE TABLE `records` (
 
 LOCK TABLES `records` WRITE;
 /*!40000 ALTER TABLE `records` DISABLE KEYS */;
-INSERT INTO `records` VALUES ('01-06-2020',16,'yHs3',1,NULL,'NA',NULL,NULL);
+INSERT INTO `records` VALUES ('26-06-2020',17,'nrSg',1,'Dolo 650-1-0-1 for 5 days-10','Viral Fever, Visit after 3 days','Blood Test',NULL);
 /*!40000 ALTER TABLE `records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:29
+-- Dump completed on 2020-06-26 23:52:02

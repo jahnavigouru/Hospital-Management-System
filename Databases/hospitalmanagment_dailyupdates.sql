@@ -39,6 +39,7 @@ CREATE TABLE `dailyupdates` (
 
 LOCK TABLES `dailyupdates` WRITE;
 /*!40000 ALTER TABLE `dailyupdates` DISABLE KEYS */;
+INSERT INTO `dailyupdates` VALUES ('26-06-2020','mjiQUQ','Pantop -D-10,Metformin ( type2 )-5','Pantop -D-10-56, Metformin ( type2 )-5-52, Total Price : Rs.108','Blood Test,Liver Function Tests,MRI','Blood Test: Rs. 100,Liver Function Tests: Rs. 100,MRI: Rs. 100, Total Cost : Rs. 300.00',NULL);
 /*!40000 ALTER TABLE `dailyupdates` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:30
+-- Dump completed on 2020-06-26 23:52:03

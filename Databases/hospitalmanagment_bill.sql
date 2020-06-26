@@ -27,10 +27,10 @@ CREATE TABLE `bill` (
   `opd_id` varchar(255) DEFAULT NULL,
   `p_doa` varchar(255) DEFAULT NULL,
   `consultancy_fee` int DEFAULT NULL,
-  `pharmacy_fee` varchar(255) DEFAULT NULL,
   `Lab_fee` varchar(255) DEFAULT NULL,
+  `pharmacy_fee` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (21,'yHs3','01-06-2020',200,NULL,NULL);
+INSERT INTO `bill` VALUES (22,'nrSg','26-06-2020',200,'Blood Test: Rs. 100, Total Cost : Rs. 100.00','Dolo 650-10-44 Total Price : Rs.44');
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:29
+-- Dump completed on 2020-06-26 23:52:02

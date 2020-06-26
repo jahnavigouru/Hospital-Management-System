@@ -41,7 +41,7 @@ CREATE TABLE `medicines` (
 
 LOCK TABLES `medicines` WRITE;
 /*!40000 ALTER TABLE `medicines` DISABLE KEYS */;
-INSERT INTO `medicines` VALUES (1,'Dolo 650',NULL,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(2,'Adderall',NULL,NULL,NULL,NULL,NULL,NULL),(3,'Ventolin',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `medicines` VALUES (1,'Dolo 650',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(2,'Adderall',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(3,'Ventolin',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(4,'azithromycin',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(5,'Hydro chororoxcine',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(6,'Thyrohorm',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(7,'Cetirizine',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(8,'Shelcal',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(9,'Neorbin',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(10,'Telvas',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(11,'Hifenac MR',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(12,'Pantop -D',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(13,'Ibuprofen',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(14,'Metformin ( type2 )',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL),(15,'Doxycycline',100,'Rs. 31','15 tablets 1 Strip',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `medicines` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:29
+-- Dump completed on 2020-06-26 23:52:02
