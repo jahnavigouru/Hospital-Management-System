@@ -7,7 +7,7 @@
           </div>
           <form action="/DocRecEntry" method="POST">
           <%for(var j=0; j< info[0].length;j++){ %>
-            <!-- First name -->
+            <!-- Patient ID -->
             <label><i class="fas fa-user"></i> Patient ID </label>
             <input type="text" id="id" class="form-control mb-4" placeholder="<%= info[0][j].p_id %>" name="p_id" disabled/>
 
@@ -19,11 +19,11 @@
             <label><i class="fas fa-user"></i> Age </label>
             <input type="text" id="age" class="form-control mb-4" placeholder="<%= info[0][j].p_age %>" name="age" disabled/>
             
-            <!-- Age -->
+            <!-- Gender -->
             <label><i class="fas fa-user"></i> Gender </label>
             <input type="text" id="gender" class="form-control mb-4" placeholder="<%= info[0][j].p_gender %>" name="gender" disabled/>
             
-            <!-- Age -->
+            <!-- Blood Group -->
             <label><i class="fas fa-user"></i> BloodGroup </label>
             <input type="text" id="BloodGroup" class="form-control mb-4" placeholder="<%= info[0][j].p_bloodgrp %>" name="BloodGroup" disabled/>
           <%}%>
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn blue-gradient">Blue</button>
+        <button type="submit" class="btn blue-gradient">Submit</button>
         </form>
 </div>
 </div>
@@ -111,7 +111,7 @@
 <% if (typeof OutApp !== 'undefined' && OutApp.length > 0) {%>
 <%for (var i = 0; i < OutApp.length; i++) { %>
   <form action="/OutApp" method="POST">
-  <!-- First name -->
+  <!-- Patient ID -->
     <label><i class="fas fa-user"></i> Patient ID </label>
     <input type="text" id="id" class="form-control mb-4" placeholder="<%= OutApp[i].p_id %>" name="p_id" disabled/>
 
@@ -123,11 +123,11 @@
     <label><i class="fas fa-user"></i> Age </label>
     <input type="text" id="age" class="form-control mb-4" placeholder="<%= OutApp[i].p_age %>" name="age" disabled/>
     
-    <!-- Age -->
+    <!-- Gender -->
     <label><i class="fas fa-user"></i> Gender </label>
     <input type="text" id="gender" class="form-control mb-4" placeholder="<%= OutApp[i].p_gender %>" name="gender" disabled/>
     
-    <!-- Age -->
+    <!-- Blood Group -->
     <label><i class="fas fa-user"></i> BloodGroup </label>
     
     <input type="text" id="BloodGroup" class="form-control mb-4" placeholder="<%= OutApp[i].p_bloodgrp %>" name="BloodGroup" disabled/>
@@ -156,7 +156,7 @@
           <% } %>
       </select>
       <br>
-    <button type="submit" class="btn blue-gradient">Blue</button>
+    <button type="submit" class="btn blue-gradient">Submit</button>
   </form>
 <%}%>
 <%}%>
@@ -173,7 +173,7 @@
             <th scope="col">Patient Status</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="color: black; background-color: azure;">
           <%for (var i = 0; i < queue[0].length; i++) { %>
             <tr>
             <th scope="row"><%= queue[0][i].p_id %></th>
@@ -197,7 +197,7 @@
   <form action="/PharmacyPayment" method="POST">
   <div class="row mt-5">
     <div class="col-md-10 m-auto">
-      <div class="card card-body">
+      <div class="card card-body" style="margin-top: 100px; background-color:rgb(0,0,0,0.5); color: white; border-radius: 1em;">
         <div class="text-center"> 
         <p class="h4 mb-4">Patient's Info</p>
         </div>

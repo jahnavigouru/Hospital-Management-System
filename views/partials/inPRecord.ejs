@@ -1,7 +1,7 @@
 <% if (typeof InAllot !== 'undefined' && InAllot.length > 0) {%>
     <%for (var i = 0; i < InAllot.length; i++) { %>
       <form action="/InRoom" method="POST">
-      <!-- First name -->
+      <!-- Patient Record -->
         <label><i class="fas fa-user"></i> Patient ID </label>
         <input type="text" id="id" class="form-control mb-4" placeholder="<%= InAllot[i].p_id %>" name="p_id" disabled/>
     
@@ -13,11 +13,11 @@
         <label><i class="fas fa-user"></i> Age </label>
         <input type="text" id="age" class="form-control mb-4" placeholder="<%= InAllot[i].p_age %>" name="age" disabled/>
         
-        <!-- Age -->
+        <!-- Gender -->
         <label><i class="fas fa-user"></i> Gender </label>
         <input type="text" id="gender" class="form-control mb-4" placeholder="<%= InAllot[i].p_gender %>" name="gender" disabled/>
         
-        <!-- Age -->
+        <!-- Blood Group -->
         <label><i class="fas fa-user"></i> BloodGroup </label>
         
         <input type="text" id="BloodGroup" class="form-control mb-4" placeholder="<%= InAllot[i].p_bloodgrp %>" name="BloodGroup" disabled/>
@@ -77,7 +77,7 @@
             <th scope="col">Patient Status</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="color: black; background-color: azure;">
           <%for (var i = 0; i < queuelab[0].length; i++) { %>
             <tr>
             <th scope="row"><%= queuelab[0][i].doa %></th>
@@ -97,10 +97,10 @@
   <%}%>
   
   <% if (typeof array !== 'undefined' && array.length > 0) {%> 
-    <form action="/update" method="POST"> 
-    <div class="row mt-5">
+    <form action="/update" method="POST" > 
+    <div class="row mt-5" >
       <div class="col-md-10 m-auto">
-        <div class="card card-body">
+        <div class="card card-body"  >
           <div class="text-center"> 
           <p class="h4 mb-4">Record Entry</p>
           </div>
@@ -116,7 +116,7 @@
             <% for (var i=2;i< array.length; i++) { %>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2"><i class="fas fa-comment-medical"></i> Tests </label>
-                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="tests"><%= array[i] %>: ......... </textarea>
+                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"><%= array[i] %>: ......... </textarea>
               </div>
             <%} %>
             

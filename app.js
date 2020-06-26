@@ -15,6 +15,7 @@ require('./config/passport')(passport)
 //EJS
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
+app.use( express.static( "public" ) );
 
 //BodyParser
 app.use(express.urlencoded({ extended: false }))

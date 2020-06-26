@@ -2,12 +2,13 @@ const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcryptjs')
 const mysql = require('mysql');
 
-//DB 
+//create connection
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'HospitalManagment'
+    database: 'HospitalManagment',
+    multipleStatements: true
 })
 
 module.exports = function(passport) {
