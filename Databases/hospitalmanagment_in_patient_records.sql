@@ -31,7 +31,9 @@ CREATE TABLE `in_patient_records` (
   `floor` varchar(255) DEFAULT NULL,
   `room_no` int DEFAULT NULL,
   `bed_no` int DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL,
+  `discharge` varchar(255) DEFAULT NULL,
+  `charges` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +43,7 @@ CREATE TABLE `in_patient_records` (
 
 LOCK TABLES `in_patient_records` WRITE;
 /*!40000 ALTER TABLE `in_patient_records` DISABLE KEYS */;
-INSERT INTO `in_patient_records` VALUES ('26-06-2020',18,'mjiQUQ',2,'sharing',' G-1',2,1,'Active');
+INSERT INTO `in_patient_records` VALUES ('26-06-2020',18,'mjiQUQ',2,'sharing',' G-1',2,1,'Inactive','30-06-2020','Rs. 500');
 /*!40000 ALTER TABLE `in_patient_records` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 23:52:02
+-- Dump completed on 2020-06-27  9:51:12

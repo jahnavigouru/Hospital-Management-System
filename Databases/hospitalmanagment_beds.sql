@@ -38,7 +38,7 @@ CREATE TABLE `beds` (
 
 LOCK TABLES `beds` WRITE;
 /*!40000 ALTER TABLE `beds` DISABLE KEYS */;
-INSERT INTO `beds` VALUES (1,'G-1',1,'Active'),(1,'G-1',2,'Active'),(2,'G-1',1,'Active'),(2,'G-1',2,'Inactive');
+INSERT INTO `beds` VALUES (1,'G-1',1,'Active'),(1,'G-1',2,'Active'),(2,'G-1',1,'Inactive'),(2,'G-1',2,'Inactive');
 /*!40000 ALTER TABLE `beds` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 23:52:02
+-- Dump completed on 2020-06-27  9:51:13
