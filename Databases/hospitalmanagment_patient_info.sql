@@ -35,7 +35,7 @@ CREATE TABLE `patient_info` (
   `p_emailid` varchar(255) DEFAULT NULL,
   `Registration` int DEFAULT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `patient_info` (
 
 LOCK TABLES `patient_info` WRITE;
 /*!40000 ALTER TABLE `patient_info` DISABLE KEYS */;
-INSERT INTO `patient_info` VALUES (16,'01-06-2020','Patient_1',30,'Female','12-06-1990','A+','8500457823','Home','furiosa@gmail.com',500);
+INSERT INTO `patient_info` VALUES (17,'26-06-2020','Patient_1',30,'Female','22-02-1989','A+','8500478235','Home','patient1@gmail.com',500),(18,'26-06-2020','Patient_2',22,'Male','25-06-1997','A+','9381850444','Home','patient2@gmail.com',500);
 /*!40000 ALTER TABLE `patient_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 22:34:28
+-- Dump completed on 2020-06-27  9:51:12

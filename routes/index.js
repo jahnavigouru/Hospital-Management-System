@@ -121,30 +121,6 @@ router.post('/outPatientID', (req, res) => {
 router.post('/OutApp', (req, res) =>{
     const { date, spe, consultancy_fee } = req.body
     const opd_id = randomstring.generate(4)
-
-    if(uniqueid.length == 10) {  
-       // find user id
-       let findID = `select p_id from patient_info where p_phn = ${uniqueid}`
-       db.query(findID, (err, done) => {
-           if(err) throw err
-            //Appoint 
-            let app = `insert into records set doa = "${date}", p_id = ${done[0].p_id}, d_id = ${spe}, prescription = "NA"`
-            db.query(app, (err, result) => {
-                if(err) throw err
-                let room = `select users.name, doctor.room_no from users,doctor where users.id = (select doc_id from diseases where d_id = ${spe}) and doctor.doc_id = (select doc_id from diseases where d_id = ${spe})`
-                db.query(room, (err, found) => {
-                    if(err) throw err
-                    //fee payment
-                    let fee = `insert into bill set p_id = ${done[0].p_id}, p_doa = "${date}", consultancy_fee = ${consultancy_fee}`
-                    db.query(fee, (err, paid) => {
-                        if(err) throw err
-                        req.flash('room', `Your Appointment is registered, PatientID: ${done[0].p_id} please proceed to Room.no: ${found[0].room_no} and Doctor: Dr. ${found[0].name} `)
-                        res.redirect('/outPatient')
-                    })
-                })
-            })
-       }) 
-    }else {
         //Appoint 
         let app = `insert into records set doa = "${date}", p_id = ${uniqueid}, d_id = ${spe}, prescription = "NA", opd_id = '${opd_id}'`
         db.query(app, (err, result) => {
@@ -161,7 +137,6 @@ router.post('/OutApp', (req, res) =>{
                 })
             })
         })
-    }
 })
 
 //In-Patient
@@ -425,12 +400,16 @@ router.get('/record', (req, res) => {
 
 //Doctor record Entry Handle
 router.post('/DocRecEntry', (req, res) => {
-    var n = req.body.med_name.length
+    var n = req.body.length
     var prescription = ""
+    if(!n) {
+        prescription = prescription + req.body.med_name + '-' + req.body.mad + '-' + req.body.quantity
+    } else{
     for(var i=0;i<n-1;i++){
-        prescription = prescription + req.body.med_name[i] + '=' + req.body.mad[i] + '-' + req.body.quantity[i] + ', ' 
+        prescription = prescription + req.body.med_name[i] + '-' + req.body.mad[i] + '-' + req.body.quantity[i] + ', ' 
     } 
-    prescription = prescription + req.body.med_name[n-1] + '=' + req.body.mad[n-1] + '-' + req.body.quantity[n-1] 
+    prescription = prescription + req.body.med_name[n-1] + '-' + req.body.mad[n-1] + '-' + req.body.quantity[n-1] 
+   }
     // record entry
     let enter = `update records set meds = "${prescription}", prescription = "${req.body.desc}", LabTests = "${req.body.lab_name}" where opd_id = '${PatientID}'`
     db.query(enter, (err, entry) => {
@@ -535,13 +514,20 @@ router.post('/PharmacyID', (req, res) => {
 //Generation of pahrmacy bill
 router.post('/PharmacyPayment', (req, res) => {
     var meds = "", totalprice = 0
-    var n = req.body.med_name.length
-    for(let i=0;i<n;i++){
-        meds = meds + req.body.med_name[i] + '-' + req.body.quantity[i] + '-' + req.body.price[i] + ', '
+    var n = req.body.length
+    if(!n) {
+        meds = meds + req.body.med_name + '-' + req.body.quantity + '-' + req.body.price
         
-        totalprice = totalprice + Number(req.body.price[i])
+        totalprice = totalprice + Number(req.body.price)
+    } else {
+        for(let i=0;i<n;i++){
+            meds = meds + req.body.med_name[i] + '-' + req.body.quantity[i] + '-' + req.body.price[i] + ', '
+            
+            totalprice = totalprice + Number(req.body.price[i])
+        }    
     }
-    meds = meds + 'Total Price : Rs.' + totalprice
+    meds = meds + ' Total Price : Rs.' + totalprice
+    
     //Update bill
     let pharmbill = `update bill set pharmacy_fee = '${meds}' where opd_id = '${P_opd_id}'`
     db.query(pharmbill, (err, paid) => {
@@ -889,12 +875,16 @@ router.get('/record', (req, res) => {
 
 //Doctor record Entry Handle
 router.post('/DocRecEntry', (req, res) => {
-    var n = req.body.med_name.length
+    var n = req.body.length
     var prescription = ""
-    for(var i=0;i<n-1;i++){
+    if(!n) {
+        prescription = prescription + req.body.med_name+ '-' + req.body.mad + '-' + req.body.quantity
+    }
+    else {for(var i=0;i<n-1;i++){
         prescription = prescription + req.body.med_name[i] + '=' + req.body.mad[i] + '-' + req.body.quantity[i] + ', ' 
     } 
     prescription = prescription + req.body.med_name[n-1] + '=' + req.body.mad[n-1] + '-' + req.body.quantity[n-1] 
+    }
     // record entry
     let enter = `update records set meds = "${prescription}", prescription = "${req.body.desc}", LabTests = "${req.body.lab_name}" where opd_id = '${PatientID}'`
     db.query(enter, (err, entry) => {
@@ -953,13 +943,19 @@ router.post('/PharmacyID', (req, res) => {
 //Generation of pahrmacy bill
 router.post('/PharmacyPayment', (req, res) => {
     var meds = "", totalprice = 0
-    var n = req.body.med_name.length
-    for(let i=0;i<n;i++){
-        meds = meds + req.body.med_name[i] + '-' + req.body.quantity[i] + '-' + req.body.price[i] + ', '
-        
-        totalprice = totalprice + Number(req.body.price[i])
+    var n = req.body.length
+    if(!n) {
+        meds = meds + req.body.med_name + '-' + req.body.quantity + '-' + req.body.price
+        totalprice = totalprice + Number(req.body.price)
     }
-    meds = meds + 'Total Price : Rs.' + totalprice
+    else{
+        for(let i=0;i<n;i++){
+            meds = meds + req.body.med_name[i] + '-' + req.body.quantity[i] + '-' + req.body.price[i] + ', '
+            
+            totalprice = totalprice + Number(req.body.price[i])
+        }
+        meds = meds + 'Total Price : Rs.' + totalprice
+    }
     //Update bill
     let pharmbill = `update bill set pharmacy_fee = '${meds}' where opd_id = '${P_opd_id}'`
     db.query(pharmbill, (err, paid) => {
