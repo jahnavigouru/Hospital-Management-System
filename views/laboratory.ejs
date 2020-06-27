@@ -1,0 +1,68 @@
+<body background="images/lab3.jpg" alt="BGC" style="height: 100%; background-repeat: no-repeat; background-size: cover; ">
+<!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+    <a class="navbar-brand" href="/laboratory">HMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/laboratory">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/labtest">Medical Tests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/labrecordin">In-Patient</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default"
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/users/logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
+  <br>
+  <br>
+  <br>
+  <div class="container-fluid">
+    <!-- Card -->
+  <div class="card" style="margin-top: 150px; background-color:rgb(0,0,0,0.5); color: white; border-radius: 1em;">
+  
+    <!-- Card content -->
+    <div class="card-body text-center col-14" >
+  
+      <!-- Title -->
+      <h4 class="card-title"><%= UserType %></h4>
+      <br>
+      <br>
+      <div class="dates">
+        <form action="/laboratory" method="POST">
+        <label><i class="fas fa-calendar"></i> Date </label><br>
+        <input type="text" autocomplete="off" id="user1" class="form-control " placeholder="<%= datep %>" value="<%= datep %>" name="date"><br>
+        <button type="submit" class="btn blue-gradient"><i class="fas fa-th-list pr-2" aria-hidden="true"></i>Submit</button>
+        </form>
+      </div>
+      <br>
+      <%- include('./partials/inPRecord.ejs'); %>
+    </div>
+  
+  </div>
+  <!-- Card -->
+  
+  </div>
+</body>
+  

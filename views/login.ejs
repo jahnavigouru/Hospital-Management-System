@@ -1,0 +1,51 @@
+<style>
+  body {           
+    background-color: #E4E9FD;
+    background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+    font-family: 'Roboto', sans-serif;
+    background-size: 1891px 885px;
+    background-repeat: no-repeat;
+  }
+  .card {
+    border-radius:5px;
+    box-shadow:2px 2px 20px 1px black;
+    background-color:rgb(0,0,0,0.5);
+    color: white; 
+   }
+
+   #top {
+     margin-top: 70px;
+   }
+  </style>
+  
+  <body >
+   <div class="row mt-5" >
+    <div class="col-md-6 m-auto" >
+      <div class="card card-body text-center" id="top">
+        <h1><img src="https://img.icons8.com/plasticine/100/000000/doctor-male.png"/></h1>
+        <!-- Default form login -->
+        <form class="p-5" action="/users/login" method="POST">
+
+        <p class="h4 mb-4">Sign in</p>
+        <%- include('./partials/messages.ejs'); %>
+    
+        <!-- E-mail -->
+        <input type="text" id="email" class="form-control mb-4" placeholder="User ID" name="email" />
+    
+        <!-- Password -->
+        <input type="password" id="password" class="form-control mb-4" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" />
+    
+        <!-- Sign in button -->
+        <button class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
+
+        <!-- Register -->
+        <p>Not a member?
+        <a href="/users/register">Register</a>
+        </p>
+
+        </form>
+        <!-- Default form login -->
+      </div>
+    </div>
+  </div>
+  </body>

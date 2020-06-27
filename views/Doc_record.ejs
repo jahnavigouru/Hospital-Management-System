@@ -1,0 +1,88 @@
+<body background="images/desk.jpg" alt="BGC" style="height: 100%; background-repeat: no-repeat; background-size: cover; ">
+  <!--Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg dest-nav navbar-dark indigo">
+      <a class="navbar-brand" href="/Doc_dash">HMS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/Doc_dash">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/record">Counsult</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="/users/logout">Logout</a>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  <%- include('./partials/messages.ejs'); %>
+    
+  
+<div class="container-fluid">
+    <!-- Card -->
+    <div class="card" style=" background-color:rgb(0,0,0,0.5); border-radius: 1em;">
+
+    <!-- Card content -->
+    <div class="card-body text-center col-14">
+
+        <!-- Title -->
+        <h4 class="card-title" style="color: white;">Dr. <%= name %></h4>
+        <!-- Text -->
+        <i class="fas fa-quote-left fa-2x fa-pull-left"></i>
+        <p style="color: white;">
+        Gatsby believed in the green light, the orgastic future that year by year recedes before us.
+        It eluded us then, but that’s no matter — tomorrow we will run faster, stretch our arms further...
+        And one fine morning — So we beat on, boats against the current, borne back ceaselessly into the past.
+      </p>
+        <!-- Basic dropdown -->
+        <br>
+        <br>
+    </div>
+
+    <!-- Classic tabs -->
+<div class="classic-tabs mx-2">
+
+  <ul class="nav tabs-cyan" id="myClassicTabShadow" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link  waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab" href="#profile-classic-shadow"
+        role="tab" aria-controls="profile-classic-shadow" aria-selected="true">Profile</a>
+    </li>
+  </ul>
+
+  <div class="tab-content card" id="myClassicTabContentShadow">
+    <div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel" aria-labelledby="profile-tab-classic-shadow">
+      <p><%- include('./partials/record_entry.ejs'); %>
+      </p>
+    </div>
+   
+  </div>
+
+</div>
+<!-- Classic tabs -->
+
+    </div>
+</div>
+</body>

@@ -1,0 +1,89 @@
+<% if(typeof entry != 'undefined') { %>
+    <% entry.forEach(function (error) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= error.msg %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    <% }); %>
+<% } %>
+
+
+<% if(error_msg != '') { %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <%= error_msg %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
+
+
+<% if(success_msg != '') { %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success_msg %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
+
+<% if(error != '') { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+    
+
+<% if(id != '') { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= id %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+  
+<% if(typeof temp != 'undefined') { %>
+    <% temp.forEach(function (error) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= error.msg %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    <% }); %>
+<% } %>
+
+
+<% if (typeof P_success_msg !== 'undefined' && P_success_msg.length > 0) {%>
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Registered!</h4>
+        <hr>  
+    <%for (var i = 0; i < P_success_msg.length; i++) { %>
+          <p><%= P_success_msg[i].msg %>.</p> 
+      <%}%>  
+    </div>    
+  <% } %>
+  
+  <% if(record_entry!= '') { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= record_entry %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+    
+<% if(room != '') { %>
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Done!</h4>
+        <hr>  
+          <p><%= room %>.</p> 
+    </div> 
+<% } %>
+  

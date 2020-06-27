@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Managment</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap-datepicker.css">
+    
+
+      
+      <!-- JQuery -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrap-datepicker.js"></script>
+      <script>
+        $(function(){
+            $('.dates #user1').datepicker({
+                'format' : 'dd-mm-yyyy',
+                'autoclose' : true
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-user-md"></i> Med Name </label>'+
+                        '<select class="browser-default custom-select mb-4" name="med_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            '<% if (typeof info !== "'+undefined+'" && info.length > 0) {%>'+
+                            '<%for (var i = 0; i < info[1].length; i++) { %>'+
+                            '<option value="<%= info[1][i].m_name %>"> <%= info[1][i].m_name %> </option>'+
+                            '<%}%>'+
+                            '<% } %>'+
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                    '<label><i class="fas fa-capsules"></i> morning-afternoon-dinner </label>'+
+                        '<input autocomplete="off" name="mad" type="text" placeholder="Type Item Quantity" class="form-control"/>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-capsules"></i>  Quantity </label>'+
+                        '<input name="quantity" type="number" placeholder="Type Item Quantity" class="form-control"/>'+
+                    '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper').on('click', '.list_remove_button', function()
+        {
+        $(this).closest('div.row').remove(); //Remove field html
+        x--; //Decrement field counter
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button2').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row2">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-briefcase-medical"></i> Lab Test </label>'+
+                        '<select class="browser-default custom-select mb-4" name="lab_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            '<% if (typeof info !== "'+undefined+'" && info.length > 0) {%>'+
+                            '<%for (var i = 0; i < info[1].length; i++) { %>'+
+                            '<option value="<%= info[1][i].l_name %>"> <%= info[1][i].l_name %> </option>'+
+                            '<%}%>'+
+                            '<% } %>'+
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button2 btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper2').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper2').on('click', '.list_remove_button2', function()
+        {
+        $(this).closest('div.row2').remove(); //Remove field html
+        x--; //Decrement field counter
+        });
+    });
+    </script>
+    <script>
+         function totalIt() {
+            var input = document.getElementsByName("fee");
+            var total = 0;
+            for (var i = 0; i < input.length; i++) {
+            if (input[i].checked) {
+                var b = parseInt(input[i].value.match(/(\d+)/));
+                total += parseFloat(b);
+              }
+            }
+        document.getElementsByName("total")[0].value = "Rs. " + total.toFixed(2);
+        }
+    </script>
+    <script>
+                $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button01').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row01">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-user-md"></i> Med Name </label>'+
+                        '<select class="browser-default custom-select mb-4" name="med_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            
+                            '<%for (var i = 0; i < prescription.length; i++) { %>'+
+                            '<option value="<%= prescription[i].m_name %>"> Med_name: <%=prescription[i].m_name%>, Med_quantity : <%=prescription[i].m_quantity%>, Med_price : <%=prescription[i].m_price%> </option>'+
+                            '<%}%>'+
+                            
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                    '<label><i class="fas fa-capsules"></i> Quantity </label>'+
+                        '<input autocomplete="off" name="quantity" type="text" placeholder=" Quantity" class="form-control"/>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-capsules"></i> Price </label>'+
+                        '<input name="price" type="text" placeholder="Price" class="form-control"/>'+
+                    '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button01 btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper01').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper01').on('click', '.list_remove_button01', function()
+            {
+                $(this).closest('div.row01').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+    </script>
+    <script>
+                $(document).ready(function()
+
+        {
+        var x = 0; //Initial field counter
+        var list_maxField = 10; //Input fields increment limitation
+
+            //Once add button is clicked
+        $('.list_add_button00').click(function()
+        {
+        //Check maximum number of input fields
+        if(x < list_maxField){ 
+            x++; //Increment field counter
+            var list_fieldHTML = '<div class="row00">'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-user-md"></i> Med Name </label>'+
+                        '<select class="browser-default custom-select mb-4" name="med_name">'+
+                            '<option value= "NA"> NA </option>'+
+                            '<% if (typeof meds !== "'+undefined+'" && meds.length > 0) {%>'+
+                            '<%for (var i = 0; i < meds[0].length; i++) { %>'+
+                            '<option value="<%= meds[0][i].m_name %>"> <%= meds[0][i].m_name %> </option>'+
+                            '<%}%>'+
+                            '<%}%>'+
+                        '</select>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-xs-7 col-sm-7 col-md-7">'+
+                    '<div class="form-group">'+
+                        '<label><i class="fas fa-capsules"></i>  Quantity </label>'+
+                        '<input name="quantity" type="number" placeholder="Type Item Quantity" class="form-control"/>'+
+                    '</div></div><div class="col-xs-1 col-sm-7 col-md-1">'+
+                        '<a href="javascript:void(0);" class="list_remove_button00 btn btn-danger">-</a>'+
+                    '</div>'+
+                '</div>';
+                $('.list_wrapper00').append(list_fieldHTML); //Add field html
+        }
+        });
+        //Once remove button is clicked
+        $('.list_wrapper00').on('click', '.list_remove_button', function()
+        {
+        $(this).closest('div.row00').remove(); //Remove field html
+        x--; //Decrement field counter
+        });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <%- body %>
+     </div>
+
+</body>
+</html>
